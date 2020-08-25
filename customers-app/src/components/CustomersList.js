@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CustomerListItem } from './CustomerListItem'
+import  CustomerListItem  from './CustomerListItem'
 
 const CustomersList = ({ customers, urlPath }) => {
     return (

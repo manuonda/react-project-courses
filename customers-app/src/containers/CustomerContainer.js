@@ -3,16 +3,36 @@ import PropTypes from 'prop-types';
 import AppFrame from '../components/AppFrame';
 import CustomersList from '../components/CustomersList'
 import CustomersActions from '../components/CustomersActions';
+import {withRouter} from 'react-router-dom'
 
-const customers = []
+const customers = [
+    { 
+       "dni":"31463600",
+       "name":"juan perez",
+       "age" :23
+    },{
+        "dni":"32489789",
+        "name":"david garcia",
+        "age": 35
+    }
+]
 class CustomerContainer extends Component {
     
-    renderBody  = customers => {
-        <CustomersList customers={customers}  urlPath={''}/>
+   handleAddNew = () => {
+       this.props.history.push('/customers/new')
+   }
+
+    renderBody  = customers => (
+        <div>
+        <CustomersList 
+           customers={customers}  
+           urlPath={'customers/'}>
+        </CustomersList>       
         <CustomersActions>
-            <button></button>
+            <button onClick={this.handleAddNew}>New Cliente</button>
         </CustomersActions>
-    }
+        </div>
+    )
     render() {
         return (
             <div>
@@ -32,4 +52,4 @@ CustomerContainer.propTypes = {
 
 };
 
-export default CustomerContainer;
+export default withRouter(CustomerContainer);
