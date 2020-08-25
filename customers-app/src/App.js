@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link ,BrowserRouter  as Router , Route } from 'react-router-dom'
-import logo from './logo.svg';
+import { BrowserRouter  as Router , Route, Switch } from 'react-router-dom'
 import './App.css';
-
+import   HomeContainer   from './containers/HomeContainer'
 
 class  App  extends React.Component {
   
@@ -18,11 +17,13 @@ class  App  extends React.Component {
   render(){
   return (
     <Router>
-    <div className="App">
-     <Route exact path="/" component={ this.renderHome}></Route>
-     <Route exact path="/customers" component={ this.renderCustomerListContainer}></Route>
-     <Route exact path="/customers/new" component={ this.renderCustomerNewContainer}></Route>
-     <Route exact path="/customers/:dni" component={ this.renderCustomerContainer}></Route> 
+    <div>
+     <Route exact path="/" component={HomeContainer} />
+     <Route exact path="/customers" component={this.renderCustomerListContainer}/>
+     <Switch>
+     <Route  path="/customers/new" component={ this.renderCustomerNewContainer}></Route>
+     <Route  path="/customers/:dni" component={ this.renderCustomerContainer}></Route> 
+     </Switch>
     </div>
     </Router>
   );
