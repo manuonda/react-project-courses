@@ -1,0 +1,1 @@
+export default fetchCustomers = () => ({ type: 'FETCH_CUSTOMERS',payload : null })
