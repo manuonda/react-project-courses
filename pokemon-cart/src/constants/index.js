@@ -1,0 +1,3 @@
+export const BUY_POKEMON='BUY_POKEMON';
+export const RETURN_POKEMON = 'RETURN_POKEMON';
+
