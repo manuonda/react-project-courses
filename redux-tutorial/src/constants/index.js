@@ -1,0 +1,1 @@
+export const UPDATE_WORD = 'UPDATE_WORD'

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Provider from 'react-redux'
+import {Provider} from 'react-redux'
 import './index.css';
 import App from './App';
-import { store } from './store'
+import store from './store/index'
 import * as serviceWorker from './serviceWorker';
 
 const rootComponent = (
@@ -14,7 +14,9 @@ const rootComponent = (
 
 ReactDOM.render(
   <React.StrictMode>
-   <rootComponent/>
+  <Provider store={store}>
+  <App></App>
+  </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

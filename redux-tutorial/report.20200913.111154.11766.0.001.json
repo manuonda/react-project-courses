@@ -1,0 +1,615 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20200913.111154.11766.0.001.json",
+    "dumpEventTime": "2020-09-13T11:11:54Z",
+    "dumpEventTimeStamp": "1600006314925",
+    "processId": 11766,
+    "cwd": "/home/manuonda/projects/react-project-courses/redux-tutorial",
+    "commandLine": [
+      "node",
+      "/home/manuonda/projects/react-project-courses/redux-tutorial/node_modules/react-scripts/scripts/test.js",
+      "--testLocationInResults",
+      "--json",
+      "--useStderr",
+      "--outputFile",
+      "/tmp/jest_runner_redux_tutorial.json",
+      "--watch",
+      "--no-coverage",
+      "--no-color",
+      "--reporters",
+      "default",
+      "--reporters",
+      "/home/manuonda/.vscode/extensions/orta.vscode-jest-3.2.0/out/reporter.js"
+    ],
+    "nodejsVersion": "v12.14.0",
+    "glibcVersionRuntime": "2.23",
+    "glibcVersionCompiler": "2.17",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "linux",
+    "componentVersions": {
+      "node": "12.14.0",
+      "v8": "7.7.299.13-node.16",
+      "uv": "1.33.1",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "5",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.14.0/node-v12.14.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.14.0/node-v12.14.0.tar.gz"
+    },
+    "osName": "Linux",
+    "osRelease": "4.15.0-99-generic",
+    "osVersion": "#100~16.04.1-Ubuntu SMP Wed Apr 22 23:56:30 UTC 2020",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz",
+        "speed": 2918,
+        "user": 1272700,
+        "nice": 116600,
+        "sys": 155200,
+        "idle": 14581500,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz",
+        "speed": 3232,
+        "user": 1196100,
+        "nice": 520600,
+        "sys": 181300,
+        "idle": 14246200,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz",
+        "speed": 2739,
+        "user": 1910200,
+        "nice": 2012600,
+        "sys": 371800,
+        "idle": 11697900,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz",
+        "speed": 2300,
+        "user": 1278100,
+        "nice": 63800,
+        "sys": 177500,
+        "idle": 14597100,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz",
+        "speed": 2573,
+        "user": 1214200,
+        "nice": 26000,
+        "sys": 160200,
+        "idle": 14730300,
+        "irq": 0
+      },
+      {
+        "model": "Intel(R) Core(TM) i5-8400 CPU @ 2.80GHz",
+        "speed": 2349,
+        "user": 1208600,
+        "nice": 26700,
+        "sys": 161500,
+        "idle": 14742200,
+        "irq": 0
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "lo",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "wlo1",
+        "internal": false,
+        "mac": "00:24:d6:f2:43:79",
+        "address": "192.168.0.193",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "tun0",
+        "internal": false,
+        "mac": "00:00:00:00:00:00",
+        "address": "10.8.8.10",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "lo",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "wlo1",
+        "internal": false,
+        "mac": "00:24:d6:f2:43:79",
+        "address": "fe80::9e03:53a6:3a39:8ac1",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 3
+      },
+      {
+        "name": "tun0",
+        "internal": false,
+        "mac": "00:00:00:00:00:00",
+        "address": "fe80::26:cbd1:876d:1793",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 11
+      }
+    ],
+    "host": "star-force"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x0000000000b04935",
+      "symbol": "report::TriggerNodeReport(v8::Isolate*, node::Environment*, char const*, char const*, std::string const&, v8::Local<v8::String>) [node]"
+    },
+    {
+      "pc": "0x00000000009db9e3",
+      "symbol": "node::OnFatalError(char const*, char const*) [node]"
+    },
+    {
+      "pc": "0x0000000000b39f1e",
+      "symbol": "v8::Utils::ReportOOMFailure(v8::internal::Isolate*, char const*, bool) [node]"
+    },
+    {
+      "pc": "0x0000000000b3a299",
+      "symbol": "v8::internal::V8::FatalProcessOutOfMemory(v8::internal::Isolate*, char const*, bool) [node]"
+    },
+    {
+      "pc": "0x0000000000ce5635",
+      "symbol": " [node]"
+    },
+    {
+      "pc": "0x0000000000ce5cc6",
+      "symbol": "v8::internal::Heap::RecomputeLimits(v8::internal::GarbageCollector) [node]"
+    },
+    {
+      "pc": "0x0000000000cf1b5a",
+      "symbol": "v8::internal::Heap::PerformGarbageCollection(v8::internal::GarbageCollector, v8::GCCallbackFlags) [node]"
+    },
+    {
+      "pc": "0x0000000000cf2a65",
+      "symbol": "v8::internal::Heap::CollectGarbage(v8::internal::AllocationSpace, v8::internal::GarbageCollectionReason, v8::GCCallbackFlags) [node]"
+    },
+    {
+      "pc": "0x0000000000cf5478",
+      "symbol": "v8::internal::Heap::AllocateRawWithRetryOrFail(int, v8::internal::AllocationType, v8::internal::AllocationAlignment) [node]"
+    },
+    {
+      "pc": "0x0000000000cbbda7",
+      "symbol": "v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationType) [node]"
+    },
+    {
+      "pc": "0x0000000000ff1e0b",
+      "symbol": "v8::internal::Runtime_AllocateInYoungGeneration(int, unsigned long*, v8::internal::Isolate*) [node]"
+    },
+    {
+      "pc": "0x0000000001374fd9",
+      "symbol": " [node]"
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2155454464,
+    "totalCommittedMemory": 2154096752,
+    "usedMemory": 2127849704,
+    "availableMemory": 45576576,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 32568,
+        "capacity": 261872,
+        "used": 32296,
+        "available": 229576
+      },
+      "new_space": {
+        "memorySize": 2097152,
+        "committedMemory": 1426760,
+        "capacity": 1047488,
+        "used": 409808,
+        "available": 637680
+      },
+      "old_space": {
+        "memorySize": 2132652032,
+        "committedMemory": 2132340928,
+        "capacity": 2109356304,
+        "used": 2108055304,
+        "available": 1301000
+      },
+      "code_space": {
+        "memorySize": 688128,
+        "committedMemory": 629760,
+        "capacity": 563360,
+        "used": 563360,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 2363392,
+        "committedMemory": 2275120,
+        "capacity": 1465520,
+        "used": 1465520,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 17342464,
+        "committedMemory": 17342464,
+        "capacity": 17319864,
+        "used": 17319864,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 3552,
+        "used": 3552,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1047488,
+        "used": 0,
+        "available": 1047488
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 79.7806,
+    "kernelCpuSeconds": 1.70362,
+    "cpuConsumptionPercent": 203.711,
+    "maxRss": 2252337152,
+    "pageFaults": {
+      "IORequired": 0,
+      "IONotRequired": 637378
+    },
+    "fsActivity": {
+      "reads": 0,
+      "writes": 8
+    }
+  },
+  "uvthreadResourceUsage": {
+    "userCpuSeconds": 38.7208,
+    "kernelCpuSeconds": 0.879472,
+    "cpuConsumptionPercent": 99.0006,
+    "fsActivity": {
+      "reads": 0,
+      "writes": 32
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "npm_config_cache_lock_stale": "60000",
+    "npm_config_ham_it_up": "",
+    "GNOME_KEYRING_PID": "",
+    "npm_config_legacy_bundling": "",
+    "npm_config_sign_git_tag": "",
+    "USER": "manuonda",
+    "LANGUAGE": "es_AR:es",
+    "J2SDKDIR": "/usr/lib/jvm/java-8-oracle",
+    "UNITY_HAS_3D_SUPPORT": "true",
+    "UNITY_DEFAULT_PROFILE": "unity",
+    "UPSTART_INSTANCE": "",
+    "VSCODE_NLS_CONFIG": "{\"locale\":\"es-419\",\"availableLanguages\":{},\"_languagePackSupport\":true}",
+    "npm_config_user_agent": "npm/6.13.4 node/v12.14.0 linux x64 ci/custom",
+    "npm_config_always_auth": "",
+    "XDG_SEAT": "seat0",
+    "VSCODE_HANDLES_UNCAUGHT_ERRORS": "true",
+    "CI": "true",
+    "npm_config_bin_links": "true",
+    "npm_config_key": "",
+    "XDG_SESSION_TYPE": "x11",
+    "COMPIZ_CONFIG_PROFILE": "ubuntu",
+    "SESSION": "ubuntu",
+    "npm_config_allow_same_version": "",
+    "npm_config_description": "true",
+    "npm_config_fetch_retries": "2",
+    "npm_config_heading": "npm",
+    "npm_config_if_present": "",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_user": "",
+    "npm_node_execpath": "/usr/local/bin/node",
+    "SHLVL": "0",
+    "J2REDIR": "/usr/lib/jvm/java-8-oracle/jre",
+    "VSCODE_LOG_STACK": "false",
+    "npm_config_prefer_online": "",
+    "npm_config_noproxy": "",
+    "HOME": "/home/manuonda",
+    "QT4_IM_MODULE": "xim",
+    "CHROME_DESKTOP": "code-url-handler.desktop",
+    "npm_package_browserslist_production_0": ">0.2%",
+    "npm_config_force": "",
+    "DESKTOP_SESSION": "ubuntu",
+    "npm_package_browserslist_production_1": "not dead",
+    "npm_config_only": "",
+    "npm_config_read_only": "",
+    "GIO_LAUNCHED_DESKTOP_FILE": "/usr/share/applications/code.desktop",
+    "VSCODE_IPC_HOOK": "/run/user/1000/vscode-0613ad71-1.44.2-main.sock",
+    "npm_package_browserslist_production_2": "not op_mini all",
+    "npm_config_cache_min": "10",
+    "npm_config_init_license": "ISC",
+    "QT_LINUX_ACCESSIBILITY_ALWAYS_ON": "1",
+    "GTK_MODULES": "gail:atk-bridge:unity-gtk-module",
+    "XDG_SEAT_PATH": "/org/freedesktop/DisplayManager/Seat0",
+    "VSCODE_LOGS": "/home/manuonda/.config/Code/logs/20200913T110730",
+    "APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL": "true",
+    "npm_config_editor": "vi",
+    "npm_config_rollback": "true",
+    "npm_config_tag_version_prefix": "v",
+    "INSTANCE": "",
+    "npm_config_cache_max": "Infinity",
+    "npm_config_timing": "",
+    "npm_config_userconfig": "/home/manuonda/.npmrc",
+    "GOROOT": "/usr/bin/go",
+    "DBUS_SESSION_BUS_ADDRESS": "unix:abstract=/tmp/dbus-wMkQfm9r9J",
+    "npm_config_engine_strict": "",
+    "npm_config_init_author_name": "",
+    "npm_config_init_author_url": "",
+    "npm_config_preid": "",
+    "npm_config_tmp": "/tmp",
+    "GIO_LAUNCHED_DESKTOP_FILE_PID": "10149",
+    "PIPE_LOGGING": "true",
+    "npm_package_dependencies_react_scripts": "3.4.3",
+    "npm_package_description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+    "npm_config_depth": "Infinity",
+    "npm_config_package_lock_only": "",
+    "npm_config_save_dev": "",
+    "npm_config_usage": "",
+    "GNOME_KEYRING_CONTROL": "",
+    "npm_package_dependencies__testing_library_react": "^9.3.2",
+    "npm_package_readmeFilename": "README.md",
+    "npm_config_metrics_registry": "https://registry.npmjs.org/",
+    "npm_config_cafile": "",
+    "npm_config_otp": "",
+    "npm_config_package_lock": "true",
+    "npm_config_progress": "",
+    "npm_config_https_proxy": "",
+    "npm_config_save_prod": "",
+    "QT_QPA_PLATFORMTHEME": "appmenu-qt5",
+    "MANDATORY_PATH": "/usr/share/gconf/ubuntu.mandatory.path",
+    "IM_CONFIG_PHASE": "1",
+    "SESSIONTYPE": "gnome-session",
+    "UPSTART_JOB": "unity7",
+    "npm_config_audit": "true",
+    "npm_config_cidr": "",
+    "npm_config_onload_script": "",
+    "npm_config_sso_type": "oauth",
+    "LOGNAME": "manuonda",
+    "GTK_IM_MODULE": "ibus",
+    "npm_config_rebuild_bundle": "true",
+    "npm_config_save_bundle": "",
+    "npm_config_shell": "/usr/bin/zsh",
+    "npm_package_private": "true",
+    "npm_config_dry_run": "",
+    "npm_config_format_package_lock": "true",
+    "npm_config_prefix": "/usr/local",
+    "DEFAULTS_PATH": "/usr/share/gconf/ubuntu.default.path",
+    "npm_config_scope": "",
+    "npm_config_browser": "",
+    "npm_config_cache_lock_wait": "10000",
+    "npm_config_ignore_prepublish": "",
+    "npm_config_registry": "https://registry.npmjs.org/",
+    "npm_config_save_optional": "",
+    "npm_config_searchopts": "",
+    "npm_config_versions": "",
+    "XDG_SESSION_ID": "c2",
+    "npm_config_cache": "/home/manuonda/.npm",
+    "npm_config_proxy": "",
+    "npm_config_send_metrics": "",
+    "GNOME_DESKTOP_SESSION_ID": "this-is-deprecated",
+    "npm_package_scripts_start": "react-scripts start",
+    "npm_config_global_style": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_version": "",
+    "GTK2_MODULES": "overlay-scrollbar",
+    "npm_package_browserslist_development_0": "last 1 chrome version",
+    "npm_config_local_address": "",
+    "npm_config_viewer": "man",
+    "npm_config_node_gyp": "/usr/local/lib/node_modules/npm/node_modules/node-gyp/bin/node-gyp.js",
+    "PATH": "/usr/local/lib/node_modules/npm/node_modules/npm-lifecycle/node-gyp-bin:/home/manuonda/projects/react-project-courses/redux-tutorial/node_modules/.bin:/home/manuonda/bin:/home/manuonda/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/lib/jvm/java-8-oracle/bin:/usr/lib/jvm/java-8-oracle/db/bin:/usr/lib/jvm/java-8-oracle/jre/bin:/opt/lampp/bin:/usr/bin/go:/home/manuonda/projects/go-projects:/home/manuonda/projects/go-projects/bin:/usr/bin/go/bin:/home/manuonda/projects/go-projects/bin:/home/manuonda/projects/go-projects/bin:/home/manuonda/app/sdk/tools:/home/manuonda/app/sdk/tools:/home/manuonda/app/sdk/platform-tools",
+    "DERBY_HOME": "/usr/lib/jvm/java-8-oracle/db",
+    "GOBIN": "/home/manuonda/projects/go-projects/bin",
+    "GDM_LANG": "es_ES",
+    "npm_package_name": "redux-tutorial",
+    "npm_package_browserslist_development_1": "last 1 firefox version",
+    "npm_config_audit_level": "low",
+    "npm_config_prefer_offline": "",
+    "NODE": "/usr/local/bin/node",
+    "XDG_SESSION_PATH": "/org/freedesktop/DisplayManager/Session0",
+    "XDG_RUNTIME_DIR": "/run/user/1000",
+    "VSCODE_NODE_CACHED_DATA_DIR": "/home/manuonda/.config/Code/CachedData/ff915844119ce9485abfe8aa9076ec76b5300ddd",
+    "npm_package_dependencies_react_redux": "^7.2.1",
+    "npm_package_browserslist_development_2": "last 1 safari version",
+    "npm_config_color": "true",
+    "npm_config_sign_git_commit": "",
+    "DISPLAY": ":0",
+    "COMPIZ_BIN_PATH": "/usr/bin/",
+    "npm_package_scripts_eject": "react-scripts eject",
+    "npm_config_fetch_retry_mintimeout": "10000",
+    "npm_config_maxsockets": "50",
+    "npm_config_offline": "",
+    "npm_config_sso_poll_frequency": "500",
+    "LANG": "es_AR.UTF-8",
+    "XDG_CURRENT_DESKTOP": "Unity",
+    "npm_package_dependencies_react_dom": "^16.13.1",
+    "npm_package_dependencies_redux": "^4.0.5",
+    "npm_config_umask": "0002",
+    "XMODIFIERS": "@im=ibus",
+    "XDG_SESSION_DESKTOP": "ubuntu",
+    "XAUTHORITY": "/home/manuonda/.Xauthority",
+    "npm_config_fund": "true",
+    "npm_config_fetch_retry_maxtimeout": "60000",
+    "npm_config_loglevel": "notice",
+    "npm_config_logs_max": "10",
+    "npm_config_message": "%s",
+    "npm_lifecycle_script": "react-scripts test \"--testLocationInResults\" \"--json\" \"--useStderr\" \"--outputFile\" \"/tmp/jest_runner_redux_tutorial.json\" \"--watch\" \"--no-coverage\" \"--no-color\" \"--reporters\" \"default\" \"--reporters\" \"/home/manuonda/.vscode/extensions/orta.vscode-jest-3.2.0/out/reporter.js\"",
+    "XDG_GREETER_DATA_DIR": "/var/lib/lightdm-data/manuonda",
+    "SSH_AUTH_SOCK": "/run/user/1000/keyring/ssh",
+    "npm_package_scripts_test": "react-scripts test \"--testLocationInResults\" \"--json\" \"--useStderr\" \"--outputFile\" \"/tmp/jest_runner_redux_tutorial.json\" \"--watch\" \"--no-coverage\" \"--no-color\" \"--reporters\" \"default\" \"--reporters\" \"/home/manuonda/.vscode/extensions/orta.vscode-jest-3.2.0/out/reporter.js\"",
+    "npm_config_ca": "",
+    "npm_config_cert": "",
+    "npm_config_global": "",
+    "npm_config_link": "",
+    "SHELL": "/usr/bin/zsh",
+    "GOPATH": "/home/manuonda/projects/go-projects",
+    "npm_package_version": "0.1.0",
+    "npm_package_dependencies__testing_library_jest_dom": "^4.2.4",
+    "npm_config_access": "",
+    "npm_config_also": "",
+    "npm_config_save": "true",
+    "npm_config_unicode": "true",
+    "npm_lifecycle_event": "test",
+    "ELECTRON_RUN_AS_NODE": "1",
+    "QT_ACCESSIBILITY": "1",
+    "GDMSESSION": "ubuntu",
+    "VERBOSE_LOGGING": "true",
+    "npm_package_dependencies__testing_library_user_event": "^7.1.2",
+    "npm_package_scripts_build": "react-scripts build",
+    "npm_config_argv": "{\"remain\":[\"--testLocationInResults\",\"--json\",\"--useStderr\",\"--outputFile\",\"/tmp/jest_runner_redux_tutorial.json\",\"--watch\",\"--no-coverage\",\"--no-color\",\"--reporters\",\"default\",\"--reporters\",\"/home/manuonda/.vscode/extensions/orta.vscode-jest-3.2.0/out/reporter.js\"],\"cooked\":[\"test\",\"--\",\"--testLocationInResults\",\"--json\",\"--useStderr\",\"--outputFile\",\"/tmp/jest_runner_redux_tutorial.json\",\"--watch\",\"--no-coverage\",\"--no-color\",\"--reporters\",\"default\",\"--reporters\",\"/home/manuonda/.vscode/extensions/orta.vscode-jest-3.2.0/out/reporter.js\"],\"original\":[\"test\",\"--\",\"--testLocationInResults\",\"--json\",\"--useStderr\",\"--outputFile\",\"/tmp/jest_runner_redux_tutorial.json\",\"--watch\",\"--no-coverage\",\"--no-color\",\"--reporters\",\"default\",\"--reporters\",\"/home/manuonda/.vscode/extensions/orta.vscode-jest-3.2.0/out/reporter.js\"]}",
+    "npm_config_before": "",
+    "npm_config_long": "",
+    "npm_config_production": "",
+    "npm_config_searchlimit": "20",
+    "npm_config_unsafe_perm": "true",
+    "npm_config_update_notifier": "true",
+    "npm_config_auth_type": "legacy",
+    "npm_config_node_version": "12.14.0",
+    "npm_config_tag": "latest",
+    "UPSTART_EVENTS": "xsession started",
+    "npm_config_git_tag_version": "true",
+    "npm_config_commit_hooks": "true",
+    "npm_config_script_shell": "",
+    "npm_config_shrinkwrap": "true",
+    "ANDROID_SDK_ROOT": "/home/manuonda/app/sdk",
+    "GPG_AGENT_INFO": "/home/manuonda/.gnupg/S.gpg-agent:0:1",
+    "UPSTART_SESSION": "unix:abstract=/com/ubuntu/upstart-session/1000/3621",
+    "npm_config_fetch_retry_factor": "10",
+    "npm_config_save_exact": "",
+    "npm_config_strict_ssl": "true",
+    "XDG_VTNR": "7",
+    "QT_IM_MODULE": "ibus",
+    "npm_config_dev": "",
+    "npm_config_globalconfig": "/usr/local/etc/npmrc",
+    "npm_config_init_module": "/home/manuonda/.npm-init.js",
+    "npm_config_parseable": "",
+    "PWD": "/home/manuonda/projects/react-project-courses/redux-tutorial",
+    "JAVA_HOME": "/usr/lib/jvm/java-8-oracle",
+    "npm_config_globalignorefile": "/usr/local/etc/npmignore",
+    "npm_execpath": "/usr/local/lib/node_modules/npm/bin/npm-cli.js",
+    "CLUTTER_IM_MODULE": "xim",
+    "XDG_CONFIG_DIRS": "/etc/xdg/xdg-ubuntu:/usr/share/upstart/xdg:/etc/xdg",
+    "XDG_DATA_DIRS": "/usr/share/ubuntu:/usr/share/gnome:/home/manuonda/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop",
+    "npm_config_cache_lock_retries": "10",
+    "npm_config_searchstaleness": "900",
+    "AMD_ENTRYPOINT": "vs/workbench/services/extensions/node/extensionHostProcess",
+    "npm_config_node_options": "",
+    "npm_config_save_prefix": "^",
+    "npm_config_scripts_prepend_node_path": "warn-only",
+    "npm_config_group": "1000",
+    "npm_config_init_author_email": "",
+    "npm_config_searchexclude": "",
+    "npm_config_git": "git",
+    "npm_config_optional": "true",
+    "JOB": "unity-settings-daemon",
+    "VSCODE_PID": "10149",
+    "VSCODE_IPC_HOOK_EXTHOST": "/tmp/vscode-ipc-44d8155b-f6b0-4fde-92ae-67ecaba82d8b.sock",
+    "npm_package_dependencies_react": "^16.13.1",
+    "npm_package_eslintConfig_extends": "react-app",
+    "npm_config_json": "",
+    "INIT_CWD": "/home/manuonda/projects/react-project-courses/redux-tutorial",
+    "BABEL_ENV": "test",
+    "NODE_ENV": "test",
+    "PUBLIC_URL": "",
+    "NODE_PATH": "",
+    "JEST_WORKER_ID": "1"
+  },
+  "userLimits": {
+    "core_file_size_blocks": {
+      "soft": 0,
+      "hard": "unlimited"
+    },
+    "data_seg_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "file_size_blocks": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_locked_memory_bytes": {
+      "soft": 65536,
+      "hard": 65536
+    },
+    "max_memory_size_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "open_files": {
+      "soft": 1048576,
+      "hard": 1048576
+    },
+    "stack_size_bytes": {
+      "soft": 8388608,
+      "hard": "unlimited"
+    },
+    "cpu_time_seconds": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    },
+    "max_user_processes": {
+      "soft": 63121,
+      "hard": 63121
+    },
+    "virtual_memory_kbytes": {
+      "soft": "unlimited",
+      "hard": "unlimited"
+    }
+  },
+  "sharedObjects": [
+    "/lib/x86_64-linux-gnu/libdl.so.2",
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6",
+    "/lib/x86_64-linux-gnu/libm.so.6",
+    "/lib/x86_64-linux-gnu/libgcc_s.so.1",
+    "/lib/x86_64-linux-gnu/libpthread.so.0",
+    "/lib/x86_64-linux-gnu/libc.so.6",
+    "/lib64/ld-linux-x86-64.so.2"
+  ]
+}
