@@ -1,12 +1,13 @@
 export const AppReducer = (state, action) => {
-    
+    console.log(action);
+    console.log(state);
     switch( action.type){
-        case 'ADD_ARTICLE' :
-            return [...state.articules, action.payload]
+        case 'CREATE_ARTICLE' :
+            return { articles :  
+                [...state.articles, action.payload]
+            }
         case 'DELETE_ARTICLE':
-            return {state: state.filter(x => x.id !== action.payload)}
-        
-            
+            return { articles: state.articles.filter(x => x.id !== action.payload)}
         default:
             return state
         

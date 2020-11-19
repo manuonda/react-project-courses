@@ -1,6 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {Link, useHistor}  from 'react-router-dom'
+import {GlobalContext} from '../context/GlobalContext'
 
-const EditArticle = () => {
+const EditArticle = (props) => {
+
+    const id = props.match.params.id;
+    const{ articles }= useContext(GlobalContext)
+    
+    console.log(id);
     return (
         <div>
             

@@ -2,6 +2,7 @@ import React ,{useState, useContext} from 'react';
 import  'bootstrap/dist/css/bootstrap.css'
 import { Link , useHistory} from 'react-router-dom';
 import {GlobalContext} from '../context/GlobalContext'
+import { v4 as uuidv4 } from 'uuid';
 
 
 const CreateArticle = () => {
@@ -17,9 +18,8 @@ const CreateArticle = () => {
 
    const handleSubmit = (e) => {
        e.preventDefault();
-       // TODO: Next here
        const article = {
-           id: uuid,
+           id: uuidv4(),
            heading : heading,
            subHeading:  subHeading,
            description: description,

@@ -3,7 +3,13 @@ import {GlobalContext} from '../context/GlobalContext'
 import {Link} from 'react-router-dom'
 
 const ListArticle = () => {
-    const { articles } = useContext(GlobalContext)
+    const { articles , deleteArticle } = useContext(GlobalContext)
+    console.log(articles);
+    
+    const handleDelete = (id) => {
+       deleteArticle(id);
+    }
+
     return (
        <Fragment>
          <div className="ArticleList">
@@ -26,17 +32,22 @@ const ListArticle = () => {
                              {articles && articles.length > 0 ? (
                                  <>
                                  { articles.map((article) => (
-                                    <div className="listbox" key={article.id}>
-                                      <div className="row">
-                                       <div className="col-md-8">
-                                         <span>{article.heading}</span>
-                                         <h4> {article.subHeading}
-                                         </h4>  
+                                    <div className="card" key={article.id}>
+                                      <div className="card-body">
+                                      <div className="card-titile">
+                                          <span>{article.heading}</span>
+                                      </div>
+                                      <div className="col-md-8">
+                                         <h4> {article.subHeading}</h4>  
                                           <p>
-                                          {article.category}
+                                          Category : {article.category}
                                           </p>
-                                          <span>{article.author}</span>
-                                        </div>   
+                                          <span>Author : {article.author}</span>
+                                        </div>
+                                       <div className="card-footer">
+                                        <Link to={`/edit/${article.id}`} className="btn btn-primary">Editar</Link>
+                                        <button className="btn btn-warning" onClick={() => handleDelete(article.id)}>Delete</button>
+                                       </div>   
                                       </div>  
                                     </div> 
                                     

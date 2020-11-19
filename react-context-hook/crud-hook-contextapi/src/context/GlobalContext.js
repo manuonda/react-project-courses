@@ -10,8 +10,9 @@ const GlobalContextProvider = (props) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
 
     const addArticle = article => {
+        console.log('add Article : ', article);
         dispatch({
-            type:'CREATE_ARTICULE',
+            type:'CREATE_ARTICLE',
             payload: article
         })
     }
@@ -32,7 +33,7 @@ const GlobalContextProvider = (props) => {
 
     
     return (
-        <GlobalContext.Provider value={{state, addArticle, editArticle, deleteArticle}}>
+        <GlobalContext.Provider value={{ articles: state.articles, addArticle, editArticle, deleteArticle}}>
           {props.children}
         </GlobalContext.Provider>
     )
