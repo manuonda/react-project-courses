@@ -15,9 +15,10 @@ export default class ClassButton extends Component {
   }
 
   render() {
+    const {times , onButtonClick} = this.props;
     return (
       <div>
-        <button onClick={this.handleClick}>Class Button {this.props.text} {this.state.times}</button>
+        <button onClick={onButtonClick}>Class Button {times}</button>
       </div>
     );
   }

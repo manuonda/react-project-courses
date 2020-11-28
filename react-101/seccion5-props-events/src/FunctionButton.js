@@ -1,13 +1,14 @@
 import React from 'react';
 
-const FunctionButton = (props) => {
+const FunctionButton = ({ times, onButtonClick}) => {
 
-    const handleClick = props => {
-        console.log('handleClick button ')
-    }
+    // const handleClick = props => {
+    //     console.log('handleClick button ')
+    // }
+
     return (
         <div>
-        <button onClick={handleClick}>Function button {props.text}</button>
+        <button onClick={onButtonClick}>Function times {times}</button>
 
         </div>
     );
