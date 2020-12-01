@@ -1,0 +1,7 @@
+.button{
+    font-weight: bold;
+    font-size: 1rem;
+    background-color: aqua;
+    color: black;
+    border: 1px solid #999;
+}
