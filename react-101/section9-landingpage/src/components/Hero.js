@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components'
 
+import Form from './Form'
+import  Addition from './Addition'
+
+
 const Component = styled.div`
   display: flex;
   flex-direction: column;
@@ -46,6 +50,8 @@ const Hero = () => {
          <Text>
           Superhero To-Do List helps you solve the problems
          </Text>
+         <Form/>
+         <Addition/>
       </Wrapper>
       </Component>
     );

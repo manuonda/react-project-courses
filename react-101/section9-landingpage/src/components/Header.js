@@ -25,10 +25,8 @@ const Button = styled.button`
     cursor: pointer;
     background-color
 }
-
 `
-
-
+//TODO: rEALIZAR UN REFACTOR
 const Header = () => {
     return (
      <Component>
