@@ -12,16 +12,56 @@ const Wrapper = style.div`
 `
 
 class TodoList extends Component {
-    state = {}
+    state = {
+        mode: 'all',
+        items:[
+            {
+             id:1,
+             label: 'Make the <List/> Component',
+             completed: false
+            },{
+                id:2,
+                label: 'Finish the Todo List',
+                completed: false
+            },{
+                id: 3,
+                label: 'Drink a cup of tea',
+                completed: true
+            }
+        ]
+    }
 
+
+    handleModeChange = mode => () => {
+        this.setState({ mode })
+    }
+
+    handleComplete = id => () => {
+       const newItems = [...this.state.items];
+       const filteredItem = newItems.filter(item => item.id === id)[0];
+       filteredItem.completed = !filteredItem.completed;
+       this.setState({ items : newItems})
+    }  
+
+    handleDelete = id => () => {
+      const filteredItems = this.state.items.filter( item => item.id !== id);
+      this.setState({
+          items:filteredItems
+      });
+    }
 
     render() {
+        const { mode ,items } = this.state;
         return (
             <div>
              <Wrapper>
-                 <Filter/>
+                 <Filter mode={mode} onModeChange={this.handleModeChange}/>
                  <Input></Input>
-                 <List></List>
+                 <List  
+                     items={items} 
+                     onComplete = {this.handleComplete}
+                     onDelete   = {this.handleDelete}
+                     ></List>
              </Wrapper>             
             </div>
         )

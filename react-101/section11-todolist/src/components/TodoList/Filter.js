@@ -30,13 +30,31 @@ const Button  = styled.button`
        background-color: #e2e8f0;
    }
   `
-
-const Filter = () => {
+const buttons = [
+  {
+    value:'all',
+    label:'All'
+  },{
+    value:'active',
+    label:'Active'
+  },{
+    value:'completed',
+    label:'Completed'
+  }
+]
+const Filter = ({ mode, onModeChange}) => {
     return (
+       
         <Component>
-            <Button selected>All</Button>
-            <Button>Active</Button>
-            <Button>Completed</Button>
+         {
+           buttons.map(({value, label}) =>(
+              <Button key={value} 
+                 onClick={onModeChange(value)}
+                 selected={mode=== value}>
+                 {label}
+              </Button> 
+           ))
+         }
         </Component>
     )
 }
