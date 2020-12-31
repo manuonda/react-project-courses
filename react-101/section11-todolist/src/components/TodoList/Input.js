@@ -1,13 +1,18 @@
-import React, {Component} from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
 
-const Wrapper = styled.div`
-border-bottom: 1px solid #e2e8f0;
-display:flex;
+const Component = styled.div`
+ padding: 1rem;
+ border-bottom: 1px solid #e2e8f0;
 `
 
-const StyledInput = styled.input`
+const Input = () => {
+    return (
+      <Component>
+          iNPUT
+      </Component>   
 
+<<<<<<< HEAD
   width: 100%;
   padding: 1rem;
   border:0;
@@ -86,6 +91,9 @@ class Input extends Component {
        </Wrapper>
      )
    }
+=======
+        )
+>>>>>>> 65b70def08fb579730b0e5ba87ffc2c8dcc84bf4
 }
 
 export default Input
