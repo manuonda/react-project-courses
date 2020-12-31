@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { v4 as uuidv4 } from 'uuid';
+
 import style from 'styled-components/macro'
 import Filter from './Filter'
 import Input from './Input'
@@ -50,15 +52,36 @@ class TodoList extends Component {
       });
     }
 
+    handleTaskAdd = ( task) => {
+        const newItem = {
+            id: uuidv4(),
+            label: task,
+            completed: true
+        }
+        let items = [newItem, ...this.state.items];
+        this.setState({items: items});
+    }
     render() {
         const { mode ,items } = this.state;
+        let filteredItems = [];
+        switch(mode) {
+            case 'completed' : 
+              filteredItems = items.filter(item => item.completed === true);
+            break;
+            case 'active' : 
+            filteredItems = items.filter(item => item.completed === false);
+            ;break;
+            default:
+                filteredItems = items
+        }
+
         return (
             <div>
              <Wrapper>
                  <Filter mode={mode} onModeChange={this.handleModeChange}/>
-                 <Input></Input>
+                 <Input onTaskAdd = {this.handleTaskAdd}></Input>
                  <List  
-                     items={items} 
+                     items={filteredItems} 
                      onComplete = {this.handleComplete}
                      onDelete   = {this.handleDelete}
                      ></List>

@@ -58,6 +58,18 @@ class Input extends Component {
 
    }
 
+   handleKeyPress = event => {
+     if ( event.key === 'Enter') {
+       this.handleSubmit();
+     }
+   }
+
+   handleSubmit = () => {
+      this.props.onTaskAdd(this.state.value);
+      this.setState({ value: '' , edit:false});
+   }
+
+
    render() {
      return(
        <Wrapper>
@@ -66,9 +78,10 @@ class Input extends Component {
               placeholder="Add Item"
               value={this.state.value}
               onChange={this.handleChange}
+              onKeyPress={this.handleKeyPress}
         /> 
         {this.state.edit && (
-          <Button>Add</Button>
+          <Button onClick={this.handleSubmit}>Add</Button>
         )}
        </Wrapper>
      )
