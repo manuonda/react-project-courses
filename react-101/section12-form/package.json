@@ -1,16 +1,15 @@
 {
-  "name": "section11-todolist",
+  "name": "section12-form",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.5.0",
+    "@testing-library/user-event": "^12.6.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
     "styled-components": "^5.2.1",
-    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
