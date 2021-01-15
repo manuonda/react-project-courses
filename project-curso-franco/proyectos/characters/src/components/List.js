@@ -1,47 +1,27 @@
 import React , {useEffect, useState} from 'react'
-import {Row, Col} from "react-bootstrap"
+import Grid from '@material-ui/core/Grid';
 import Item from './Item';
+import Loading from './Loading'
+import useFetch from '../customHooks/useFetch';
 
 const BASE_URL="https://rickandmortyapi.com/api/character";
 
 const List = () => {
-    
-    const[pokemons, setPokemons] = useState([]);
-    const[loading, setLoading]  = useState(true);
-    const[name, setName] = useState("");
   
-
-    console.log(name);
-    
-    useEffect(() =>{
-        const getPokemons = async () =>{
-            console.log("informacion 23");   
-           try {
-            const result = await  fetch(BASE_URL);
-            const data   = await  result.json();
-            const results = data.results;
-            console.log(results);
-            setPokemons(results); 
-            console.log(pokemons);        
-            setLoading(false);
-            console.log(loading);     
-           } catch (error) {
-              console.log(error); 
-           }
-       }
-        getPokemons();
-    }, [])
+    const[data,fetching,error] =  useFetch('character');
+    const {info, results: characters } = data;
 
     return (
-        <>
-         { pokemons && pokemons.length > 0 ?
-            pokemons.map(pokemon =>(
-              <Item id={pokemon.id} {...pokemon}></Item>  
-            ))
-           :
-           <div> No hay Pokemones</div>  
-         }            
-        </>
+        <Grid container spacing={2}>
+             {fetching ?
+             <Loading/>
+             :
+            characters.map(character =>(
+              <Item key={character.id} {...character}></Item>  
+              ))
+             }            
+        </Grid>
+        
     )
 }
 
