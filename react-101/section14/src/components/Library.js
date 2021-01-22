@@ -1,15 +1,20 @@
 import React from 'react'
-import { useParams} from 'react-router-dom'
+import { Redirect, useParams} from 'react-router-dom'
 
 const Library = (props) => {
      
     let {library} = useParams();
     console.log(`library ${library}`);
-    return (
-        <div>
-            Library
-        </div>
-    )
+            if(library === 'netflix') {
+                return(
+                    <div>
+                        <p>{library}</p>
+                    </div>
+                )
+            } else{
+                return <Redirect to='/about'></Redirect>
+            }
+    
 }
 
 export default Library;
