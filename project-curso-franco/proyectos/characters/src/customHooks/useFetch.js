@@ -26,7 +26,7 @@ const useFetch = (url , initialState={}) => {
 
     useEffect(() => {
        fetchData() 
-    }, [])
+    }, [url])
 
   
     return [data,fetching, error];
