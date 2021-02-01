@@ -1,12 +1,12 @@
 import {BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import Login from './pages/Login'
+import Login from '../pages/Login'
 
 const PublicRoutes = () => {
 
     return (
         <Router>
-          <Route path="/login" exact></Route>
-          <Redirect path="/login" component={Login}></Redirect> 
+          <Route path="/login" exact component={Login}></Route>
+          <Redirect path="/login"></Redirect>
         </Router>
     )
 }
