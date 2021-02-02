@@ -6,7 +6,7 @@ const PublicRoutes = () => {
     return (
         <Router>
           <Route path="/login" exact component={Login}></Route>
-          <Redirect path="/login"></Redirect>
+          {/* <Redirect path="/login"></Redirect> */}
         </Router>
     )
 }

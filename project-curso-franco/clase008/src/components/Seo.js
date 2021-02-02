@@ -1,12 +1,12 @@
 import {Helmet } from 'react-helmet'
-import propTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export const Seo = ({ title, description}) => {
     return (
         <div>
             <Helmet>
                 <title>{title}</title>
-                <meta name="description">{description}</meta>
+                <meta name={description}/>
             </Helmet>
         </div>
     )

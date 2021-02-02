@@ -1,6 +1,6 @@
 import { GET_USER, SET_USER } from "../constants/index";
 
-const initialState = {
+export const initialState = {
     user: '',
     password:''
 };
