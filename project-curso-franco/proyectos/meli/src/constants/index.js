@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://api.mercadolibre.com'
+export const BASE_URL = 'https://api.mercadolibre.com/sites/MLA/'

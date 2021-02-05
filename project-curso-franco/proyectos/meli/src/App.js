@@ -6,6 +6,7 @@ import Routes from './Routes/index'
 function App() {
   
   const [search, setSearch] = useState(null)
+  //metodo de busqueda
   const handleSearch = (product) => setSearch(product)
 
 

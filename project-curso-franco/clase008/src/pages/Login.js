@@ -1,89 +1,87 @@
+import { useReducer, useContext } from "react";
+import { useForm } from "react-hook-form";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Container,
+  TextField,
+} from "@material-ui/core";
 
-import {useReducer} from 'react'
-import {Helmet} from 'react-helmet'
-import { useForm} from 'react-hook-form'
-import { userReducer, initialState } from '../reducers/users'
-import { SET_USER } from '../constants/index'
-import Seo from '../components/Seo'
-
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container'
-import Box from '@material-ui/core/Box'
-import TextField from '@material-ui/core/TextField'
-import Typography from '@material-ui/core/Typography';
+import { userReducer, initialState } from "../reducers/users";
+import { SET_USER } from "../constants/index";
+import Seo from "../components/Seo";
+import { UsuarioContext } from '../reducers/userContext';
 
 
 const useStyles = makeStyles({
-    root: {
-      maxWidth: 345,
-    },
-    media: {
-      height: 140,
-    },
-  });
-const Login = () => {
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
+  },
+});
+const Login = ({history}) => {
+  const { handleSubmit, register, errors } = useForm();
+  const [state, dispatch] = useReducer(userReducer, initialState);
+  const { authenticate, auth } = useContext(UsuarioContext);
 
-    const { handleSubmit, register, errors } = useForm();
-    const [state, dispatch] = useReducer(userReducer, initialState)
-    
-    const onSubmit = (e) => {
-      e.preventDefault()
-      const { username, password } = e.target;
-      console.log(username,password);
-     dispatch({ type: SET_USER, payload: {username, password}})
-    }
+  console.log('autehnitnecat',authenticate)
+  console.log('auth:',auth);
 
-    const classes = useStyles();
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const { username, password } = e.target.name;
+    console.log(username, password);
+    dispatch({ type: SET_USER, payload: { username, password } });
+    const serverResponse = "myToken";
+    authenticate(serverResponse);
+    history.push("/dashboard");
+  };
 
-    return (
-        <>
+  const classes = useStyles();
 
-        <Seo title="Login" description="El login del sitio"/>
-        <form onSubmit={onSubmit}>
+  return (
+    <>
+      <Seo title="Login" description="El login del sitio" />
+      <form onSubmit={onSubmit}>
         <Container>
-        <Card className={classes.root}>
-        <CardContent>
-        <div>
-        <TextField 
-           error
-           id="standard-error" 
-           label="Username" 
-           name="username"
-           defaultValue="Hello World" 
-           helperText="Incorrect entry."
-
-           />
-        </div>
-        <div>
-        <TextField
-          error
-          name="password"
-          id="standard-error-helper-text"
-          label="Password"
-          defaultValue="Hello World"
-          helperText="Incorrect entry."
-        />
-      </div>
-         
-        </CardContent>
-      <CardActions>
-      
-        <Button size="small" color="primary" type="submit">
-         Enviar
-        </Button>
-      </CardActions>
-    </Card>
+          <Card className={classes.root}>
+            <CardContent>
+              <div>
+                <TextField
+                  error
+                  id="standard-error"
+                  label="Username"
+                  name="username"
+                  defaultValue="Hello World"
+                  helperText="Incorrect entry."
+                />
+              </div>
+              <div>
+                <TextField
+                  error
+                  name="password"
+                  id="standard-error-helper-text"
+                  label="Password"
+                  defaultValue="Hello World"
+                  helperText="Incorrect entry."
+                />
+              </div>
+            </CardContent>
+            <CardActions>
+              <Button size="small" color="primary" type="submit">
+                Enviar
+              </Button>
+            </CardActions>
+          </Card>
         </Container>
-       
-        </form>
-        </>
-    )
-}
+      </form>
+    </>
+  );
+};
 
-export default Login
+export default Login;

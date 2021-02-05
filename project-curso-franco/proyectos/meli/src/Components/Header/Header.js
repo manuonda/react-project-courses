@@ -7,13 +7,10 @@ const Header = React.memo(({ handlerSearch}) => {
     
     const history = useHistory();
     const search = (ev) =>{
-       
        ev.preventDefault()
        const [{ value }]  = ev.target;
        const trimvalue = value.trim()
-       alert(trimvalue)
        if( trimvalue ){
-           console.log("search")
            handlerSearch(value)
            history.push("/products")
        }    

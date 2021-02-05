@@ -4,21 +4,27 @@ import axios from 'axios'
 import { productsReducer , initialState } from '../../reducers/products'
 import { FETCHING, FETCH_SUCCESS, FETCH_ERROR } from "../../reducers/actions/products"
 import {BASE_URL} from '../../constants/index'
+import {Container, Row, Col ,Image} from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+
+
 
 const Products = ({ search }) => {
 
 
     const [state, dispatch] = useReducer(productsReducer, initialState);
+    console.log("state: ", state);
     const getProducts = async () => {
         try {
-            const {data : info } = await axios.get(`${BASE_URL}/search?search=${search}&limit=4`,{});
-            console.log(info);
-            dispatch({type: FETCH_SUCCESS, 
-                      payload: {
-                        products: info.products 
+            const {data : info } = await axios.get(`${BASE_URL}/search?q=${search}&limit=4`,{});
+            console.log("information",info.results);
+            dispatch({ type: FETCH_SUCCESS, 
+                       payload: {
+                         products: info.results,
+                         
                       }
             });
-            console.log(info)
+            console.log("after", state);
         } catch (error) {
            dispatch({type:
               FETCH_ERROR,
@@ -31,12 +37,31 @@ const Products = ({ search }) => {
 
 
     useEffect(() => {
-       // peticion http 
+       getProducts();
     },[search])
     return (
-        <div>
-            Products a traer: ${search}
-        </div>
+        <>
+        
+         <Container>
+             {
+                 state.products.length ?
+                 state.products.map((product) => (
+                     <Col md={12}>
+                         <Row>
+                             <Col md={4} key={product.id}>
+                                 <Image src={product.thumbnail} rounded></Image>
+                                 <p>{product.title}</p>
+                                 <p>${product.price}</p>
+                               <Link to={`/products/detail/${product.id}`}>Detail</Link>
+                             </Col>
+                         </Row>
+                     </Col>
+                 ))
+                 :
+                 <h3>Cargando...</h3>
+             }
+         </Container>  
+        </>
     )
 }
 
