@@ -24,9 +24,7 @@ const Login = () => {
     console.log("informacion");
     console.log(user);
     const { username,  password } = user;
-    if ( username === "dgarcia" && password ===)
-
-
+    
   };
 
   const handleUser = (e) => {

@@ -4,3 +4,4 @@ export const ts = 1000
 export const hash = "67a5dce5705fe70242c27b0d9ad736a9"
 export const USERNAME_LOGIN="manuonda"
 export const USERNAME_PASSWORD="123456"
+export const BASE_URL = "http://gateway.marvel.com/v1/public/";
