@@ -3,6 +3,7 @@ import { createContext, useState} from 'react'
 // se crea la interfaz
 export const AuthContext= createContext({
    auth: null,
+   username: null,
    authenticate: () => {},
    logout: () => {}
 });
@@ -10,14 +11,16 @@ export const AuthContext= createContext({
 // se crea la implementacion de la interfaz
 export const AuthProvider = ({ children }) => {
    const[auth, setAuth] = useState(null);
+   const[username, setUsername] = useState(null);
 
 
    /**
     * Funcion login de usuario
     */
-   const authenticate  = ( username, password) => {
+   const authenticate  = ( usuario, password) => {
       const token = "myToken" 
       setAuth(token)
+      setUsername(usuario);
    }
 
    /**
@@ -25,9 +28,10 @@ export const AuthProvider = ({ children }) => {
     */
    const logout = () => {
      setAuth(null)
+     setUsername(null);
    }
 
 
-   return <AuthContext.Provider value={{ auth, authenticate , logout}}>{children}</AuthContext.Provider>
+   return <AuthContext.Provider value={{ auth, username, authenticate , logout}}>{children}</AuthContext.Provider>
 }
 

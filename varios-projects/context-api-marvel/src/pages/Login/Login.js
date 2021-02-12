@@ -1,30 +1,61 @@
 import React, { useState, useContext } from "react";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { Box, Grid, Paper, TextField, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 import { AuthContext } from "../../context/authContext";
 import { schema } from "./schema";
-import {username , password } from '../../constants'
+
+import { USERNAME_LOGIN, USERNAME_PASSWORD } from "../../constants";
 
 const initialState = {
   username: "",
   password: "",
 };
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+  grid: {
+    textAlign: "center",
+    flexDirection: "center",
+  },
+}));
 const Login = () => {
   const [user, setUser] = useState(initialState);
+  const [errorLogin, setErrorLogin] = useState(false);
+  const history = useHistory();
   const { auth, authenticate } = useContext(AuthContext);
-  const { register, handleSubmit, watch, errors } = useForm({
+  const classes = useStyles();
+
+  const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const handleLogin = (e) => {
-    console.log("informacion");
-    console.log(user);
-    const { username,  password } = user;
+  const handleLogin = (data) => {
+    const { username, password } = data;
+    console.log(`Usuario ${username} , ${password}`);
+    console.log(`${USERNAME_PASSWORD} , ${USERNAME_PASSWORD}`);
     
+    if (username === USERNAME_LOGIN && password === USERNAME_PASSWORD) {
+       authenticate(username, password);
+       history.push("/dashboard");
+    } else {
+      setErrorLogin(true);
+    }
+  };
+
+  const handleLimpiar = () => {
+    setUser(initialState);
+    setErrorLogin(false);
   };
 
   const handleUser = (e) => {
@@ -35,35 +66,56 @@ const Login = () => {
   };
   return (
     <>
-      <Container>
-        <Row>
-          <Form onSubmit={handleSubmit(handleLogin)}>
-            <Form.Group>
-              <Form.Control
-                ref={register}
-                type="text"
-                name="username"
-                onChange={handleUser}
-                placeholder="Usuario"
-              ></Form.Control>
-              <label className="text-danger">{errors.username?.message}</label>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
-                type="password"
-                ref={register}
-                name="password"
-                onChange={handleUser}
-                placeholder="Password"
-              />
-              <label className="text-danger">{errors.username?.message}</label>
-            </Form.Group>
-            <Button type="submit" variant="dark">
-              Acceder
-            </Button>
-          </Form>
-        </Row>
-      </Container>
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
+            <form onSubmit={handleSubmit(handleLogin)}>
+              <div>
+                <TextField
+                  onChange={handleUser}
+                  error={errors.username ? true : false}
+                  label="Usuario"
+                  name="username"
+                  value={user.username}
+                  inputRef={register}
+                  helperText={
+                    errors.username?.message ? errors.username?.message : ""
+                  }
+                />
+              </div>
+              <div>
+                <TextField
+                  onChange={handleUser}
+                  error={errors.password?.message ? true : false}
+                  id="standard-error-helper-text"
+                  label="Password"
+                  type="password"
+                  name="password"
+                  value={user.password}
+                  inputRef={register}
+                  helperText={
+                    errors.password?.message ? errors.password?.message : ""
+                  }
+                />
+              </div>
+             
+             { errorLogin ? <Box color="error.main">Usuario o Password Incorrecto</Box>
+             : ""
+               }
+            <Grid container justify="center" display="flex" alignItems="center">
+              <Button type="submit" variant="contained" color="primary">
+                Enviar
+              </Button>
+
+              <Button variant="contained" onClick={handleLimpiar}>
+                Limpiar
+              </Button>
+            </Grid>
+            </form>
+
+          </Paper>
+        </Grid>
+      </Grid>
     </>
   );
 };
