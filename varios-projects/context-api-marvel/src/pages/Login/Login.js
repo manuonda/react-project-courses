@@ -89,7 +89,7 @@ const Login = () => {
                   error={errors.password?.message ? true : false}
                   id="standard-error-helper-text"
                   label="Password"
-                  type="password"
+                  type="text"
                   name="password"
                   value={user.password}
                   inputRef={register}
