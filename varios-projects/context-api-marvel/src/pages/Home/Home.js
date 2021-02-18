@@ -1,9 +1,11 @@
 import React from 'react'
 
 const Home = () => {
+    
+    
     return (
         <>
-         NavBar
+         <h1> Categorias </h1>
         </>
     )
 }
