@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     },
   });
 
-const CardCategory = ({ id ,title , image }) => {
+const CardCategory = (id ,title , year , thumbnail) => {
     const classes = useStyles();
 
     return (
@@ -31,20 +31,16 @@ const CardCategory = ({ id ,title , image }) => {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+            {title}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            Year : {year}
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
+          More
         </Button>
       </CardActions>
     </Card>   
