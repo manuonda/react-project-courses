@@ -1,15 +1,9 @@
 import React from "react";
 
-import {Container} from "react-bootstrap";
+import { Container } from "react-bootstrap";
 
 const Home: React.FC = () => {
-  return (
-    <>
-      <Container>
-        Home
-      </Container>       
-    </>
-  );
+  return <Container>Home</Container>;
 };
 
 export default Home;
