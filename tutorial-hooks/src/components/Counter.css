@@ -1,9 +1,0 @@
-.counter{
-   flex: 1;
-}
-.counter button {
-    border-radius: 1;
-    border :  1px solid cyan;
-    border-color: #202020;
-    font-size: 2rem;
-}
