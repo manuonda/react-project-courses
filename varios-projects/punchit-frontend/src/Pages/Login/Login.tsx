@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect} from "react";
+import { useCookies} from "react-cookie"
 import {
   Container,
   Row,
@@ -6,7 +7,15 @@ import {
   Form
 } from "react-bootstrap";
 
+
 const Login: React.FC = () => {
+  
+  const[cookies]
+
+   useEffect(() => {
+    console.log("Verificar authentication");
+   }, [])
+
   const handleLogin = (e: any) => {
     e.preventDefault();
     let { email, password } = e.target.elements;
