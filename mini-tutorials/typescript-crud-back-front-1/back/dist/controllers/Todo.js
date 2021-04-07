@@ -42,13 +42,16 @@ const addTodo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.addTodo = addTodo;
+// Update 
 const update = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const { params: { id }, body } = req;
     }
     catch (error) {
     }
 });
 exports.update = update;
+// Remove 
 const remove = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
     }

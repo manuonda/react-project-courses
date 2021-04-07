@@ -7,7 +7,7 @@ export interface ITodo {
     updatedAt?: string
 }
 
-interface TodoProps{
+export interface TodoProps{
     todo: ITodo
 }
 

@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
+import React , {useEffect, useState} from 'react';
+import { ITodo}  from './type';
+import TodoItem from './components/TodoItem';
+import { getTodos, addTodo } from './Api';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => {  
+  
+  const[todos, setTodos] = useState<ITodo[]>([]);
+  useEffect(() => {
+    fetchTodos();
+  },[]);
 
+  const fetchTodos = ():void =>{
+    getTodos()
+    .then(({ data: { todos } }: ITodo[] | any ) => setTodos(todos))
+    .catch((error) => console.log(error));
+  }
+
+  const handleUpdateTodo = (todo: ITodo):void =>{
+     console.log("handleUpdateTodo : ", todo);
+  }
+
+  const handleDeleteTodo = (_id:string) =>{
+      console.log("delete todo  :"+ _id);
+  }
+
+  return(
+     <>
+       {
+         todos.map((todo: ITodo) => (
+           <TodoItem  
+              key={todo._id}
+              updateTodo={handleUpdateTodo}
+              deleteTodo={handleDeleteTodo}
+              todo={todo}
+           ></TodoItem>
+          
+         ))
+       }
+     
+     </>
+  );
+
+
+}
 export default App;

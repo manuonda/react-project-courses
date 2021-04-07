@@ -33,15 +33,23 @@ export const addTodo = async( req: Request, res: Response): Promise<void> => {
     }
 }
 
+// Update 
 export const update = async(req:Request, res: Response) : Promise<void> => {
-    
     try {
+        const { 
+              params : { id } ,
+              body 
+            } = req;
+       
+              
         
     } catch (error) {
         
     }
 }
 
+
+// Remove 
 export const remove = async (req: Request, res: Response) : Promise<void> => {
 
     try {
