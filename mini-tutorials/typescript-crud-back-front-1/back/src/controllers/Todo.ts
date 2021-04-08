@@ -40,11 +40,18 @@ export const update = async(req:Request, res: Response) : Promise<void> => {
               params : { id } ,
               body 
             } = req;
-       
-              
+
+            const  updateTodo : ITodo | null =  await Todo.findByIdAndUpdate({ _id: id},body);
+            const  allTodos = await Todo.find();
+            res.status(200).json({
+                "message": "Update ",
+                todo: updateTodo,
+                todos: allTodos
+            }); 
         
     } catch (error) {
-        
+         throw error;
+         res.status(error);
     }
 }
 
@@ -53,9 +60,16 @@ export const update = async(req:Request, res: Response) : Promise<void> => {
 export const remove = async (req: Request, res: Response) : Promise<void> => {
 
     try {
-        
+         const id = req.params.id;
+         const deleteTodo: ITodo | null = await Todo.findByIdAndRemove(id);
+         const allTodos = await Todo.find();
+         res.status(200).json({
+             message: "Delete todo",
+             todo: deleteTodo,
+             todos: allTodos
+         })
     } catch (error) {
-        
+        throw error;
     }
 }
 

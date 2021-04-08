@@ -46,16 +46,34 @@ exports.addTodo = addTodo;
 const update = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { params: { id }, body } = req;
+        const updateTodo = yield todo_1.default.findByIdAndUpdate({ _id: id }, body);
+        const allTodos = yield todo_1.default.find();
+        res.status(200).json({
+            "message": "Update ",
+            todo: updateTodo,
+            todos: allTodos
+        });
     }
     catch (error) {
+        throw error;
+        res.status(error);
     }
 });
 exports.update = update;
 // Remove 
 const remove = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const id = req.params.id;
+        const deleteTodo = yield todo_1.default.findByIdAndRemove(id);
+        const allTodos = yield todo_1.default.find();
+        res.status(200).json({
+            message: "Delete todo",
+            todo: deleteTodo,
+            todos: allTodos
+        });
     }
     catch (error) {
+        throw error;
     }
 });
 exports.remove = remove;
