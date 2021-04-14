@@ -2,7 +2,7 @@ import React, { useState} from 'react'
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
 
-modifiimport {Grid, Stack, Text , Button , Link , Box, Flex } from "@chakra-ui/react"
+import {Grid, Stack, Text , Button , Link , Box, Flex } from "@chakra-ui/react"
 
 // types 
 import { Product } from '././product/types';
