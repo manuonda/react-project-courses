@@ -7,9 +7,7 @@ export const dbConnect = async () => {
   try {
     await mongoose.connect(`mongodb+srv://${config.MONGO_USER}:${config.MONGO_PASSWORD}@${config.MONGO_HOST}/${config.MONGO_DATABASE}`, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
+      useUnifiedTopology: true
     });
     console.log("connect dataBase");
   } catch (error) {

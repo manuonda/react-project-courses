@@ -6,7 +6,7 @@ import config from "./config/config"
 
 import { dbConnect } from "./config/database";
 
-import videoRouter from "./route/"
+import videoRouter from "./route/video";
 
 const app: Express = express();
 // seteo el puerto
@@ -18,7 +18,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
-app.use()
+app.use("/videos", videoRouter);
 
 try {
    dbConnect();

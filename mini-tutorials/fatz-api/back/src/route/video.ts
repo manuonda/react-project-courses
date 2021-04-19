@@ -4,7 +4,10 @@ import * as videoCtrl from "../controller/Video";
 
 const router:Router = Router();
 
-router.get("/list", videoCtrl.all;
-router.post("/add", videoCtrl.add);
+router.get("/", videoCtrl.all);
+router.post("/", videoCtrl.add);
+router.delete("/:id", videoCtrl.remove);
+router.put("/:id", videoCtrl.update);
+router.get("/:id", videoCtrl.get);
 
 export default router;
