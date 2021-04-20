@@ -4,9 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { BrowserRouter as Router, Route , Switch } from 'react-router-dom';
+import Home from './Home';
+import VideoForm from './components/Videos/VideoForm'
+
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+    <Switch>
+      <Route exact path="/" component={Home}></Route>
+      <Route path="/new-video" component={VideoForm}></Route>
+    </Switch>
+
+    </Router>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
