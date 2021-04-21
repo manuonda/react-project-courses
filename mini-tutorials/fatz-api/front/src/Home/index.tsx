@@ -1,7 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import VideoList from '../components/Videos/VideoList'
 import axios from 'axios';
+import { loadData} from '../components/Videos/VideoService'; 
 
+import {
+    Divider, Text
+} from "@chakra-ui/react"
 
 import  { BASE_URL} from '../constants'
 
@@ -11,26 +15,30 @@ const Home: React.FC = ()  => {
 
    const [videos, setVideos] = useState<IVideo[]>([]);
    useEffect(() => {
-       loadData();
+      load();
    },[]) 
   
-   const loadData = async (): Promise<void> => {
-    let api =  `${BASE_URL}videos/`;
-    try {
-        const result = await axios.get(api);
-        const videos:IVideo[] | any  = result.data;
-        console.log(videos);  
-        setVideos(videos.videos);
-        console.log(videos);
-    } catch (error) {
-        console.error(error);
-    }
-   }
+   const load  = async () => {
+       try{
+          const videos: IVideo[] =  await loadData();
+          const formatedVideos =  videos.map( video => {
+              return {
+                  ...video,
+                  createdAt: video.createdAt? new Date(video.createdAt): new Date(),
+                  updatedAt: video.updatedAt? new Date(video.updatedAt): new Date()
+              }
+          }).sort((a,b) =>  b.createdAt.getTime() - a.createdAt.getTime())
+          setVideos(formatedVideos); 
+       }catch(error) {
+
+       }
+   } 
 
    return(
       <div>
-          <div> Home que onda </div>
-          <VideoList videos={videos}></VideoList>
+          <Text> Home que onda </Text>
+          <Divider marginY={6}></Divider>
+          <VideoList videos={videos} loadVideos={load}></VideoList>
       </div>
   )
 }

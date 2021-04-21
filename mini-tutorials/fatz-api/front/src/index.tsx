@@ -16,13 +16,13 @@ ReactDOM.render(
         <Container
           borderRadius="sm"
           backgroundColor="white"
-          boxShadow="md"
-         >
+          boxShadow="md">
         
           <Router>
             <Switch>
               <Route exact path="/" component={Home}></Route>
               <Route exact path="/new-video" component={VideoForm}></Route>
+              <Route exact path="/update/:id" component={VideoForm}></Route>
             </Switch>
           </Router>
         </Container>

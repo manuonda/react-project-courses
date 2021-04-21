@@ -24,7 +24,7 @@ export const add = async (req: Request, res: Response): Promise<void> => {
       url: url,
     });
     const result = await video.save();
-    res.status(200).send({ result });
+    res.status(200).send({status: "OK", result });
   } catch (error) {
     console.error("error");
     console.error(error);
@@ -42,9 +42,9 @@ export const update = async (req: Request, res: Response): Promise<void> => {
       { _id: id },
       body
     );
-    res.status(200).json({ updateVideo, message: "Update Video" });
+    res.status(200).json({status : "OK" , updateVideo, message: "Update Video" });
   } catch (error) {
-    res.status(500);
+    res.status(500).json({status: "ERROR", message : error});
   }
 };
 
