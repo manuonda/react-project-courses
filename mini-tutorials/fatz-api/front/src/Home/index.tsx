@@ -9,7 +9,7 @@ import {IVideo} from '../types/IVideo'
 
 const Home: React.FC = ()  => {
 
-   const [videos, setVideos] = useState([]);
+   const [videos, setVideos] = useState<IVideo[]>([]);
    useEffect(() => {
        loadData();
    },[]) 
@@ -17,9 +17,11 @@ const Home: React.FC = ()  => {
    const loadData = async (): Promise<void> => {
     let api =  `${BASE_URL}videos/`;
     try {
-        const result:IVideo[]| null = await axios.get(api);
-           
-        console.log(result);   
+        const result = await axios.get(api);
+        const videos:IVideo[] | any  = result.data;
+        console.log(videos);  
+        setVideos(videos.videos);
+        console.log(videos);
     } catch (error) {
         console.error(error);
     }
@@ -28,7 +30,7 @@ const Home: React.FC = ()  => {
    return(
       <div>
           <div> Home que onda </div>
-          <VideoList></VideoList>
+          <VideoList videos={videos}></VideoList>
       </div>
   )
 }
