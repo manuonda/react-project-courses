@@ -20,7 +20,7 @@ import React , {SetStateAction,ChangeEvent  ,FormEvent , Dispatch, useState} fro
 
     const handleSubmit = (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        handleCategorys((categorys:string[]) => [...categorys, value]);
+        handleCategorys((categorys:string[]) => [value, ...categorys]);
         console.log(value);
         setValue("");
         console.log(value);

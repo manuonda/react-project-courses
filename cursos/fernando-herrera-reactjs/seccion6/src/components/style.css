@@ -1,0 +1,18 @@
+.card {
+    align-content: center;
+    border: 1px solid gray;
+    border-radius: 6px;
+    margin-bottom: 6px;
+
+}
+
+.card p {
+    font-size: "1px";
+}
+
+
+.card-grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
