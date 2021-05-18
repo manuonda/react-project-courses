@@ -1,5 +1,10 @@
 import React from 'react'
 
+type Props = {
+    title: string,
+    url: string
+}
+
 export const GifGridItem = ({ title, url }) => {
 
     return (

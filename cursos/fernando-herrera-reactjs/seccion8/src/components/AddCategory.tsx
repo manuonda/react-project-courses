@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 
-export const AddCategory = ({ setCategories }) => {
+type Props = {
+    setCategories: any
+}
+
+export const AddCategory: React.FC<Props> = ({ setCategories }) => {
 
     const [inputValue, setInputValue] = useState(''); // ''
 
-    const handleInputChange = ( e ) => {
+    const handleInputChange = ( e: React.ChangeEvent<HTMLInputElement> ) => {
         setInputValue( e.target.value );
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
 
         if ( inputValue.trim().length > 2 ) {
-            setCategories( cats => [ inputValue, ...cats, ] );
+            setCategories( (cats:any) => [ inputValue, ...cats, ] );
             setInputValue('');
         }
 
