@@ -5,7 +5,7 @@ type Props = {
     url: string
 }
 
-export const GifGridItem = ({ title, url }) => {
+export const GifGridItem:React.FC<Props> = ({ title, url }) => {
 
     return (
         <div className="card animate__animated animate__fadeIn">

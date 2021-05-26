@@ -11,6 +11,7 @@ export const AddCategory: React.FC<Props> = ({ setCategories }) => {
 
     const handleInputChange = ( e: React.ChangeEvent<HTMLInputElement> ) => {
         setInputValue( e.target.value );
+        console.log('jhanldeInputChange llamado');
     }
 
     const handleSubmit = (e: any) => {

@@ -8,6 +8,7 @@
  * @format
  */
 
+import { Box } from '@material-ui/core';
 import React from 'react';
 import {
   SafeAreaView,
@@ -26,8 +27,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import { Contador } from './src/screens/Contador';
+import BoxObjectModelScreen from './src/screens/BoxObjectModelScreen';
+import {Contador} from './src/screens/Contador';
 import HolaMundoScreen from './src/screens/HolaMundoScreen';
+import DimensionesScreen from'./src/screens/DimensionesScreen';
+
 
 const Section: React.FC<{
   title: string;
@@ -58,12 +62,18 @@ const Section: React.FC<{
 };
 
 const App = () => {
-
-
   return (
-     //<HolaMundoScreen></HolaMundoScreen>
-      <Contador></Contador> 
-  );
+    // <SafeAreaView>
+    //   {/* { <HolaMundoScreen></HolaMundoScreen> */}
+      
+    //   {/* <BoxObjectModelScreen></BoxObjectModelScreen> */}
+    //   <Contador></Contador>
+    // </SafeAreaView>
+    <SafeAreaView style={{ flex: 1}}>
+      {/* <BoxObjectModelScreen></BoxObjectModelScreen> */}
+       <DimensionesScreen></DimensionesScreen>
+    </SafeAreaView>
+    );
 };
 
 const styles = StyleSheet.create({
