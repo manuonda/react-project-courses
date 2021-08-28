@@ -6,6 +6,11 @@ type Props = {
     category: any
 }
 
+type Img = {
+    title: string,
+    url: string
+}
+
 export const GifGrid: React.FC<Props> = ({ category }) => {
 
     const { data:images, loading } = useFetchGifs( category );
