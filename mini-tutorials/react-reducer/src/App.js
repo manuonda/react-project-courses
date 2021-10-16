@@ -28,7 +28,7 @@ const reducer = (state , action ) => {
 export const CounterContextProvider =  props => {
     const[state, dispatch] = useReducer(reducer, initialState);
     return(
-      <CounterContext.Provider value={{state, dispatch}}>
+      <CounterContext.Provider value={{state }}>
         {props.children}
       </CounterContext.Provider>
     )
