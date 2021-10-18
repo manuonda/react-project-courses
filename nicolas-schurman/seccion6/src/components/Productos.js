@@ -1,6 +1,7 @@
 import React from 'react'
 import Producto from './Producto'
 import Button from './Button'
+import Layout from './Layout'
 
 const styles={
     productos: {
@@ -14,6 +15,8 @@ export const Productos = ({ addProducto, productos=[]}) => {
     console.log(addProducto, productos);
     return (
         <div style={styles.productos}>
+           <Layout>
+
            { productos && productos.map(producto => 
               <Producto 
                 
@@ -22,6 +25,7 @@ export const Productos = ({ addProducto, productos=[]}) => {
                 producto={producto}>
                 </Producto>
            )} 
+           </Layout>
         </div>
     );
 }

@@ -1,7 +1,8 @@
 import { useState} from 'react'
 import Productos from './components/Productos'
 import './App.css';
-
+import Title from './components/Title'
+import Navbar from './components/Navbar'
 
 
 
@@ -22,6 +23,8 @@ const App = () =>  {
 
   return (
     <div className="App">
+      <Navbar></Navbar>
+      <Title></Title>
       <Productos
         addProducto={addProducto}
         productos = {productos}     
