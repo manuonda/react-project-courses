@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import TextInput from './components/TextInput';
 import Checkbox from './components/Checkbox';
 import Select from './components/Select';
+import Radio from './components/Radio';
 
 const App = () => {
   const validate = (values) => {
@@ -24,12 +25,18 @@ const App = () => {
     } else if (values.apellido.length < 5) {
       errors.apellido = "El apellido es muy corto";
     }
+
+    if (!values.radio) {
+      errors.radio = "Requerido";
+    } 
+
     return errors;
   };
 
   return (
     <Formik
-      initialValues={{ email: "", nombre: "", apellido: "" , nombredos:"", accept: false}}
+      initialValues={{
+         email: "", nombre: "", apellido: "" , nombredos:"", accept: false, radio: ''}}
       onSubmit={(values) => alert(JSON.stringify(values, null, 2))}
       validate={validate}
     >
@@ -58,6 +65,9 @@ const App = () => {
               <option value="felipe">Felipe</option>
               <option value="chachitofeliz">Chanchito Feliz</option>
           </Select>
+
+          <Radio label="chanchito" value="valoruno" name="radio"></Radio>
+          <Radio label="chanchito2" value="valordos" name="radio"></Radio>
         </Form>
       )}
     </Formik>
