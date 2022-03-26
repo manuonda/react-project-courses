@@ -1,5 +1,4 @@
 import { ADD_QUANTITY, SET_TICKETS, SUBSTRACT_QUANTITY } from "../actions/tickets"
-import TableTickets from "../pages/Tickets/components/TableTickets";
 
 
 export const initialState = {

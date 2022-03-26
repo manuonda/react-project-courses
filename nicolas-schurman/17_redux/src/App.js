@@ -7,6 +7,30 @@ import { combineReducers } from 'redux';
 //     filter: 'all', /// complete, incomplete
 // }
 
+export const asyncMiddleware = store => next => action => {
+    console.log("------------------------");
+    console.log('store: ',store,'next: ', next, 'action : ', action);
+    if ( typeof action === 'function') {
+        return action(store.dispatch, store.getState)
+    }
+    return next(action);
+}
+
+
+
+export const fetchThunk =  () => async dispatch => {
+    console.log('soy un thunk');
+    dispatch({ type: 'todos/pending'})
+    try {
+        const resp = await fetch('https://jsonplaceholder.typicode.com/todos');
+        const data = await resp.json();
+        const todos = data.slice(0,10);
+        dispatch({type: 'todos/fulfilled', payload: todos});
+
+    } catch (error) {
+        dispatch({type: 'todos/error' , error: error.message});
+    }
+}
 
 // Funciones puras 
 export const filterReducer = (state = 'all', action) => {
@@ -23,7 +47,7 @@ export const todosReducer = (state = [], action) => {
         case 'todo/add': {
             console.log('todo/add ', state, action.payload);
             return  state.concat({...action.payload})
-       };break;
+       };
        case 'todo/complete' : {
            const newTodos = state.map (todo => {
                 if ( todo.id ===  action.payload.id) {
@@ -34,7 +58,10 @@ export const todosReducer = (state = [], action) => {
            });
  
           return newTodos ;
-        };break;
+        };
+
+        case 'todo'
+
         default: 
         return state;
     }
@@ -151,6 +178,8 @@ const App = () => {
          Completados</button>
         <button onClick={() => dispatch({ type:'filter/set', payload:'incomplete'})}>
             Incompletados</button>
+            <button onClick={() => dispatch(fetchThunk())}>
+            Fetch</button>
         <ul>
            { todos && todos.map( todo => (
                <TodoItem key={todo.id} {...todo}></TodoItem>
