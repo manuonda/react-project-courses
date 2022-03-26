@@ -28,25 +28,27 @@ export const Login = () => {
       <Box bg="white" p={6} rounded="md" w={64}>
   
           <Formik
-            initValues={{
-              username: '',
-              password: '',
+            initialValues={{
+              username: "",
+              password:""
             }}
             onSubmit={(values) => {
               alert(JSON.stringify(values, null, 2));
+              const {username, password}  = values;
+              login(username, password);
             }}
             validationSchema={ LoginValidateSchema }
-          >
+            >
            {({ handleSubmit, errors, touched}) => (
-               <form onSubmit={handleSubmit}>
-               <VStack spacing={4} align="flex-start">
+              <form onSubmit={handleSubmit}> 
+              <VStack spacing={4} align="flex-start">
                  <FormControl>
                    <FormLabel htmlFor="email">Email Address</FormLabel>
                    <Field
                      as={Input}
                      id="username"
                      name="username"
-                     type="username"
+                     type="text"
                      variant="filled"
                    />
                  </FormControl>
@@ -75,7 +77,8 @@ export const Login = () => {
                    Login
                  </Button>
                </VStack>
-             </form>
+               </form>
+            
             )}
           </Formik>
         </Box>

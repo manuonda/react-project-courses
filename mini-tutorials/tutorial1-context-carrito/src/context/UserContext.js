@@ -22,7 +22,7 @@ export const UserProvider = ({children}) => {
     }
 
     return (
-        <Provider value={state, login}>
+        <Provider value={{state, login}}>
             {children}
         </Provider>
     )
