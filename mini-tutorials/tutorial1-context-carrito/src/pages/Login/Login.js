@@ -29,8 +29,8 @@ export const Login = () => {
   
           <Formik
             initValues={{
-              username: '',
-              password: '',
+              username: "",
+              password: "",
             }}
             onSubmit={(values) => {
               alert(JSON.stringify(values, null, 2));
@@ -46,7 +46,7 @@ export const Login = () => {
                      as={Input}
                      id="username"
                      name="username"
-                     type="username"
+                     type="text"
                      variant="filled"
                    />
                  </FormControl>
@@ -58,16 +58,7 @@ export const Login = () => {
                      name="password"
                      type="password"
                      variant="filled"
-                     validate={(value) => {
-                       let error;
- 
-                       if (value.length < 5) {
-                         error = "Password must contain at least 6 characters";
-                       }
- 
-                       return error;
-                     }}
-                   />
+                    />
                    <FormErrorMessage>{errors.password}</FormErrorMessage>
                  </FormControl>
                 
