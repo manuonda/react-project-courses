@@ -11,8 +11,9 @@ const fibonacci = (n : number ):number[] => {
     }
     return elements;
 }
-
+console.log(new Date());
 console.log(fibonacci(6));
+console.log(new Date());
 
 
 // Fibonacci recursive 0( 2 ** n ) : ver grafos 
@@ -21,4 +22,25 @@ const recursiveFib = ( n : number) : number => {
     return recursiveFib(n-1) + recursiveFib(n -2 );
 }
 
-console.log()
+console.log(5);
+
+// 1 -  Agregar un objeto dentro de mi funcion recursiva
+// 2 - 
+/* {
+    3:2, 
+    4:3  
+   }
+   O(n)
+*/
+const memorizeFib = (n : number , memo: Record<number,number> = {}): number => {
+    if (n in memo) return memo[n];
+    if (n <= 2 ) return 1;
+     memo[n] = memorizeFib(n-1, memo) + memorizeFib(n -2, memo);
+    
+     return memo[n];
+}
+
+//console.log(recursiveFib(50));
+console.log(new Date());
+console.log(memorizeFib(50));
+console.log(new Date());

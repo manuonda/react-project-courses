@@ -1,7 +1,4 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import  Link from 'next/link'
-import styles from '../styles/Home.module.css'
 
 const Pokemon =({pokemon}) =>{
    const id = pokemon.url.split("/").filter(x => x).pop();
@@ -11,8 +8,8 @@ const Pokemon =({pokemon}) =>{
 
 export default function Pokemones({ pokemones }) {
   return (
-    <div className={styles.container}>
-   
+    <div>
+        <p data-testid="titulo">Mi App Pokemonoes</p>
         <ul>
         {pokemones.map(pokemon => (
           <Pokemon key={pokemon.name} pokemon={pokemon}></Pokemon>
