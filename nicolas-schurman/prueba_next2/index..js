@@ -1,5 +1,5 @@
 import { render, screen} from '@testing-library/react'
-import Index, {getStaticProps} from '../pages/index';
+import Index, {getStaticProps} from './pages/index';
 
 
 describe('Index',() => {
