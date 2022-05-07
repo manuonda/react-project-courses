@@ -8,8 +8,8 @@ export const Rutas = () => {
     <>
     <BrowserRouter>
      <Routes>
-         <Route exact path="/" element={<Home/>} ></Route>
-         <Route exact path="/login" element={<Login></Login>}></Route>
+         <Route exact path="/" element={<Login/>} ></Route>
+         <Route exact path="/home" element={<Home/>}></Route>
      </Routes>
     </BrowserRouter>
     </>

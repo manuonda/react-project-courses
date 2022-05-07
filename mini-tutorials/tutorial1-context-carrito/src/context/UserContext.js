@@ -11,7 +11,10 @@ export const UserProvider = ({children}) => {
         username: '',
         password: ''     
     };
-
+   
+    const actions = {
+        login
+    } 
     const [state, setState] = useState(initValues);
 
     const login = (username, password) => {
@@ -20,9 +23,10 @@ export const UserProvider = ({children}) => {
             password
         });
     }
+    
 
     return (
-        <Provider value={{state, login}}>
+        <Provider value={{state, actions}}>
             {children}
         </Provider>
     )

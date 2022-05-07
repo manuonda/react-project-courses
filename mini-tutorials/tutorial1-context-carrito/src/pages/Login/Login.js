@@ -42,8 +42,8 @@ export const Login = () => {
            {({ handleSubmit, errors, touched}) => (
               <form onSubmit={handleSubmit}> 
               <VStack spacing={4} align="flex-start">
-                 <FormControl>
-                   <FormLabel htmlFor="email">Email Address</FormLabel>
+                 <FormControl isInvalid={!!errors.username && touched.username}>
+                   <FormLabel htmlFor="email">Nombre Usuario</FormLabel>
                    <Field
                      as={Input}
                      id="username"
@@ -51,6 +51,7 @@ export const Login = () => {
                      type="text"
                      variant="filled"
                    />
+                   <FormErrorMessage>{errors.username}</FormErrorMessage>
                  </FormControl>
                  <FormControl isInvalid={!!errors.password && touched.password}>
                    <FormLabel htmlFor="password">Password</FormLabel>
@@ -60,15 +61,6 @@ export const Login = () => {
                      name="password"
                      type="password"
                      variant="filled"
-                     validate={(value) => {
-                       let error;
- 
-                       if (value.length < 5) {
-                         error = "Password must contain at least 6 characters";
-                       }
- 
-                       return error;
-                     }}
                    />
                    <FormErrorMessage>{errors.password}</FormErrorMessage>
                  </FormControl>
