@@ -8,10 +8,26 @@ interface Iprops {
 
  
 export const List = ({usuarios}: Iprops) => {
-  const  
+  
   return (
-    <div>List</div>
-  )
+       <>
+          <ul>
+            {
+              usuarios && usuarios.map( usuario => (
+                <>
+                <li key={usuario.documento}>
+                   <div className="">
+                     <p>{usuario.nombre}</p>
+                     <p>{usuario.apellido}</p> 
+                     <p>{usuario.documento}</p>
+                   </div> 
+                </li>
+                </>
+              ))
+            } 
+          </ul>  
+       </>    
+  )  
 }
 
 export default List;
