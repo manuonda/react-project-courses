@@ -1,13 +1,18 @@
 
-interface State{
 
+interface FormState{
+      
 }
 
 
-interface ActionType {
-    
-}
+type ActionType  = {
+   type: "chage_values",
+   payload: {
 
+   }
+} | {
+    type: "clear"
+}
 
 
 
