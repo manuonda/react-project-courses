@@ -2,7 +2,8 @@ import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import { createStore , applyMiddleware } from "redux";
 import "./index.css";
-import App, { reducer , asyncMiddleware } from "./App";
+import App, { asyncMiddleware } from "./App";
+import  {reducer} from './features/todos';
 import { Provider } from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 

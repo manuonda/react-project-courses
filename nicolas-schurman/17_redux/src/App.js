@@ -1,11 +1,8 @@
 import { useSelector , useDispatch} from'react-redux';
 import { useState } from 'react';
-import { combineReducers } from 'redux';
+import { setPending, setFullFilled,setError, setTodoComplete, setFilter , selectTodo, selectStatus} from '../src/features/todos';
 
-// const initialState = {
-//     entities: [],
-//     filter: 'all', /// complete, incomplete
-// }
+
 
 export const asyncMiddleware = store => next => action => {
     console.log("------------------------");
@@ -18,128 +15,29 @@ export const asyncMiddleware = store => next => action => {
 
 
 
+
 export const fetchThunk =  () => async dispatch => {
     console.log('soy un thunk');
-    dispatch({ type: 'todos/pending'})
+    dispatch(setPending)
     try {
         const resp = await fetch('https://jsonplaceholder.typicode.com/todos');
         const data = await resp.json();
         const todos = data.slice(0,10);
-        dispatch({type: 'todos/fulfilled', payload: todos});
+        dispatch(setFullFilled(todos));
 
     } catch (error) {
-        dispatch({type: 'todos/error' , error: error.message});
-    }
-}
-
-// Funciones puras 
-export const filterReducer = (state = 'all', action) => {
-    switch(action.type) {
-        case 'filter/set' :
-            return action.payload;
-        default:
-            return state;
-    }
-} 
-
-export const todosReducer = (state = [], action) => {
-    switch(action.type) {
-        case 'todo/add': {
-            console.log('todo/add ', state, action.payload);
-            return  state.concat({...action.payload})
-       };
-       case 'todo/complete' : {
-           const newTodos = state.map (todo => {
-                if ( todo.id ===  action.payload.id) {
-                    return {...todo, completed: !todo.completed}
-                }
- 
-                return todo;
-           });
- 
-          return newTodos ;
-        };
-
-        case 'todo'
-
-        default: 
-        return state;
+        dispatch(setError(error));
     }
 }
 
 
-export const reducer = combineReducers({
-    entities: todosReducer,
-    filter: filterReducer,
-})
-
-// export const reducer = (state = initialState, action)  => {
-//     console.log('reducer : ', state, action);
-//     return {
-//          entities: todosReducer( state.entities, action),
-//          filter : filterReducer(state.filter, action),
-//     }
-// }
-
-/**
- * 
- * @param {*} state 
- * @param {*} action : type , payload 
- * @returns 
- */
-// export const reducer = (state = initialState, action) => {
-     
-//     switch(action.type) {
-//       case 'todo/add': {
-//            console.log('reducer!');
-//            return {
-//                ...state,
-//                entities: state.entities.concat({...action.payload})
-//            }
-//       };break;
-//       case 'todo/complete' : {
-//           const newTodos = state.entities.map (todo => {
-//                if ( todo.id ===  action.payload.id) {
-//                    return {...todo, completed: !todo.completed}
-//                }
-
-//                return todo;
-//           });
-
-//          return {
-//              ...state,
-//              entities: newTodos
-//          };
-//       }
-//       case 'filter/set': {
-//             return {
-//                   ...state,
-//                   filter : action.payload
-//             }
-//         };break
-          
-//      }
-//     return state;
-// }
-
-
-const selectTodo = state => {
-    const {entities, filter} = state;
-    if ( filter === 'complete') {
-        return entities.filter( todo => todo.completed);
-    } else if ( filter ==='incomplete') {
-        return entities.filter ( todo => !todo.completed);
-    }
-
-    return entities;
-}; 
 
 const TodoItem = ({...todo}) => {
     const dispatch = useDispatch();
     return (
         <li
           style={{textDecoration: todo.completed? 'line-through':'none' }}
-         onClick={() => dispatch({type: 'todo/complete', payload: todo })}
+         onClick={() => dispatch(setTodoComplete(todo))}
         >{todo.title}</li>
     )
 }
@@ -149,6 +47,8 @@ const App = () => {
     //devuelvo el metodo Global
     // permite seleccionar parte de nuestros estados
     const todos = useSelector( selectTodo);
+    const status = useSelector(selectStatus);
+
     console.log('selectTodo');
    
 
@@ -164,6 +64,13 @@ const App = () => {
       dispatch({ type: 'todo/add', payload: todo});
       setValue("");
     }
+
+    if ( status.loading==='pending'){
+        return <p>Cargando...</p>
+    }
+    if(status.loading ==='rejected'){
+        return <p>{status.error}</p>
+    }
     return(
         <>
         <form onSubmit={submit}>
@@ -171,12 +78,12 @@ const App = () => {
           <button type="submit">Enivar</button>
         </form>
 
-        <button onClick={() => dispatch({ type: 'filter/set' , payload : 'all'})}>
+        <button onClick={() => dispatch(setFilter('all'))}>
             Mostrar todos
         </button>
-        <button onClick={() => dispatch({ type:'filter/set', payload:'complete'})}>
+        <button onClick={() => dispatch(setFilter('complete'))}>
          Completados</button>
-        <button onClick={() => dispatch({ type:'filter/set', payload:'incomplete'})}>
+        <button onClick={() => dispatch(setFilter('incomplete'))}>
             Incompletados</button>
             <button onClick={() => dispatch(fetchThunk())}>
             Fetch</button>

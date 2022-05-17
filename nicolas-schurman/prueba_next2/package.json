@@ -1,0 +1,26 @@
+{
+  "name": "prueba_next2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest --watch"
+  },
+  "dependencies": {
+    "next": "12.1.5",
+    "react": "18.0.0",
+    "react-dom": "18.0.0",
+    "styled-components": "^5.3.5"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "babel-plugin-styled-components": "^2.0.7",
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.5",
+    "jest": "^27.5.1"
+  }
+}

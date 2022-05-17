@@ -28,9 +28,15 @@ export const Login = () => {
       <Box bg="white" p={6} rounded="md" w={64}>
   
           <Formik
+<<<<<<< HEAD
             initialValues={{
               username: "",
               password:""
+=======
+            initValues={{
+              username: "",
+              password: "",
+>>>>>>> 9f18291ea2827071a3d3768c1fa50bd206df71c7
             }}
             onSubmit={(values) => {
               alert(JSON.stringify(values, null, 2));
@@ -61,7 +67,11 @@ export const Login = () => {
                      name="password"
                      type="password"
                      variant="filled"
+<<<<<<< HEAD
                    />
+=======
+                    />
+>>>>>>> 9f18291ea2827071a3d3768c1fa50bd206df71c7
                    <FormErrorMessage>{errors.password}</FormErrorMessage>
                  </FormControl>
                 

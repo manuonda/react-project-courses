@@ -26,7 +26,11 @@ export const UserProvider = ({children}) => {
     
 
     return (
+<<<<<<< HEAD
         <Provider value={{state, actions}}>
+=======
+        <Provider value={{state, login}}>
+>>>>>>> 9f18291ea2827071a3d3768c1fa50bd206df71c7
             {children}
         </Provider>
     )
