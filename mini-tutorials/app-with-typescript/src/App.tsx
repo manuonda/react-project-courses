@@ -1,49 +1,79 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState ,useRef } from "react";
+import Form from "./components/Form";
+import List from "./components/List";
+import { Sub , SubsResponseFromApi } from "./types";
 
-interface Sub {
-  nick:string,
-  avatar: string,
-  subMonths: number,
-  description?:string
+
+
+interface AppState {
+  subs: Array<Sub>,
+  newsSubsNumber: number | string;
 }
 
-const initialState = [
-  
-]
-
+const INITIAL_STATE = [
+  {
+    nick: 'dadepelu',
+    subMonths: 3,
+    avatar: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/6.png',
+    description: 'Informacion numero 1'
+  }, {
+    nick: 'sergio_numero',
+    subMonths: 4,
+    avatar: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/7.png'
+  }
+];
 function App() {
-  const [number, setNumber] = useState<number | string >(5); //number o string 
+  const [number, setNumber] = useState<number | string>(5); //number o string 
   const changeNumber = () => setNumber("3");
-  const[ subs, setSubs] = useState([
-     {
-       nick: 'dadepelu',
-       subMonts: 3,
-       avatar: '',
-       description: 'Informacion numero 1'
-     },{
-       nick: 'sergio_numero',
-       subMonts: 4,
-       avatar:'http://i.pravatar'
-     }
-  ]);
+  const [loading, setLoading] = useState<boolean>(true);
+  // const[ subs, setSubs] = useState<Array<Sub>>([]);
+  const [subs, setSubs] = useState<AppState["subs"]>([]); // useAppState of type subs
+  const divRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    //setSubs(INITIAL_STATE);
+    const fetchSubs = (): Promise<SubsResponseFromApi> => {
+      return fetch('http://localhost:3001/subs').then(res => res.json());
+    }
 
+    const mapFromApiToSubs = (apiResponse : SubsResponseFromApi):
+      Array<Sub> => apiResponse.map(subFromApi => {
+      const {
+        nick, months: subMonths, profileUrl: avatar, description
+      } = subFromApi;
+      return {
+        nick,
+        description,
+        avatar,
+        subMonths
+      };
+    })
+    
+
+    // fetchSubs()
+    // .then( responseAPi => {
+    //   const subs = mapFromApiToSubs(responseAPi);
+    //   setSubs(subs);
+    // })
+    fetchSubs()
+    .then(mapFromApiToSubs)
+    .then(setSubs);
+    setLoading(false);
+  }, []);
+
+
+  const handleNewSub = (newSub: Sub) => {
+    setSubs([...subs, newSub]);
+  }
   return (
-    <div className="App">
-       <ul>
-         {
-           subs.map( sub => {
-             return (<>
-               <li key={sub.nick}>
-                 <img src={sub.avatar} alt={`Avatar for ${sub.nick}`}>
-                 </img>
-                 <h4>{sub.nick} (<small>{ sub.subMonts}</small>)</h4>
-                 <p>{sub.description?.substring(0,100)}</p>
-               </li>
-             </>)
-           })
-         }
-       </ul>
-       <button onClick={changeNumber}>Change Numer</button>
+    <div className="App" ref={divRef}>
+
+      {loading ? "Cargando " :
+        <>
+          <List subs={subs}></List>
+          <Form onNewSub={handleNewSub}></Form>  
+        </>
+      }
+
     </div>
   );
 }
