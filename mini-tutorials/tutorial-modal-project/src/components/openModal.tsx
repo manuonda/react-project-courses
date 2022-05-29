@@ -4,7 +4,6 @@ import {createRoot} from 'react-dom/client';
 export default function openModal(){
  
     const Modal = lazy(() => import('./modal'));
-    debugger;
     const modalDiv = document.createElement('div');
     modalDiv.id = 'modal';
     document.body.appendChild(modalDiv);
