@@ -1,13 +1,9 @@
 import { useReducer } from "react"
 import { AcortadorUrl } from "../types";
+import { Actions, ActionsAcortador } from "./actions";
 
 
-enum actions { ADD, LOAD, REMOVE, CLEAR, LOAD_VIEW}
 
-type  actionAcortado =  {
-   type: actions.ADD,
-   payload:string 
-}
 
 interface acortadorState {
   items: Array<AcortadorUrl>
@@ -18,13 +14,16 @@ const INIT_STATE = {
 }
 
 function getRandomURL() {
-    const randomString: string = Math.random().toString(32).substring(2, 3);
-    return randomString;
-}
+    const random_string =
+      Math.random().toString(32).substring(2, 5) +
+      Math.random().toString(32).substring(2, 5);
+    return random_string;
+  }
+  
 
-const acortadorReducer =(state: acortadorState, action: actionAcortado)  => {
+const acortadorReducer =(state: acortadorState, action: ActionsAcortador)  => {
     switch(action.type) {
-       case actions.ADD: 
+     case Actions.ADD: 
        const url = action.payload;
        const shorUrl = getRandomURL();
        const temp = [...state.items];
@@ -36,12 +35,41 @@ const acortadorReducer =(state: acortadorState, action: actionAcortado)  => {
        } ;
        
        temp.unshift(newItem);
+       localStorage.setItem("urls", JSON.stringify([...temp]));
        return {
            ...state,
            items: [...temp]
-       }  
+       }
+      case Actions.LOAD: 
+        const data = localStorage.getItem('urls');
+        if ( data ){
+            const temp = JSON.parse(data);
+            return {
+                items: temp
+            }
+        }else {
+            return {
+                items:[]
+            }
+        }
+      case Actions.LOAD_VIEW:
+          let tempLoad = [...state.items];
+          const item = tempLoad.find( i => i === action.payload);
+          if ( item ) {
+             item.views = item.views + 1;
+             localStorage.setItem('urls', JSON.stringify(tempLoad));
+             return {
+                 items: [...tempLoad]
+             }
+          } else {
+             return {
+                 ...state
+             }
+          }
+          
        
     }
+    
 }
 
 const useReducerApp = () => {

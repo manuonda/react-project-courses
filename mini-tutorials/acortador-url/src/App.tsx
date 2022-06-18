@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Create></Create>}></Route>
-      <Route path='u/:id' element={<Redirect></Redirect>}></Route>
+      <Route path='/:id' element={<Redirect></Redirect>}></Route>
 
     </Routes>
     </BrowserRouter>

@@ -1,15 +1,24 @@
 import React, { useState } from "react";
+import { Actions, ActionsAcortador } from "../reducer/actions";
+import useReducerApp from "../reducer/reducerAcortador";
 
-const CreateForm  = ()=>{
-   const [url, setUrl] = useState<string>("");
-   const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+
+type ICreateFormProps = {
+    dispatch: React.Dispatch<ActionsAcortador>
+}
+
+const CreateForm  = ( {dispatch}: ICreateFormProps )=>{
+   
+    const [url, setUrl] = useState<string>("");
+    const acortadorReducer = useReducerApp();
+    const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
        const value = e.target.value;
        setUrl(value);
    }
 
    const handleSubmit = (e:React.FormEvent<HTMLFormElement>) => {
        e.preventDefault();
-
+       dispatch({ type: Actions.ADD, payload: url});
    }
 
    return(<>
