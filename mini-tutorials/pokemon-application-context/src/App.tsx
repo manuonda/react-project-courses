@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
-import { Pokemon } from './type'
+import { TPokemon } from './type'
+import Pokemon from './pages/Pokemon';
 
 function App() {
-  const [pokemons, setPokemons] = useState<Array<Pokemon>>([
+  const [pokemons, setPokemons] = useState<Array<TPokemon>>([
     {id: 1, name:'David Garcia'},
     {id: 2, name:'Andres Garcia'}
   ]);
@@ -17,7 +18,7 @@ function App() {
 
   return (
    <>
-    
+     <Pokemon listado={pokemons}></Pokemon>    
    </>
   )
 }
