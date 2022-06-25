@@ -4,9 +4,9 @@ import React from 'react'
 import { TPokemon } from '../../type';
 
 interface Props {
-    pokemon?: TPokemon
+   dispatch: any
 }
-export const Pokedex = ({pokemon}:Props) => {
+export const Pokedex = ({ dispatch}:Props) => {
   return (
     <>
     </>

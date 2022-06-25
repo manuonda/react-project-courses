@@ -10,29 +10,29 @@ enum PokemonActions  {
 }
 
 
-type ActionType = {
+type ActionType = | {
     type : PokemonActions.ADD,
     payload: TPokemon
-} | {
-    type:  PokemonActions.FIND
+}| {
+    type: PokemonActions.REMOVE,
+    payload: TPokemon
 } | {
     type: PokemonActions.ALL
-} |  {
-    type: PokemonActions.REMOVE,
-    payload : TPokemon
 }
 
 
 
-interface initState {
-    pokemons : Array<TPokemon>
+type initState  =  {
+  pokemons : Array<TPokemon>
 }
 
 
-const addPokemon  = (state: initState, pokemon: TPokemon) => ({
-     ...state,
-     pokemons: state.pokemons.push(pokemon)
-});
+const addPokemon  = (state: initState, pokemon: TPokemon): initState => {
+    return {
+        ...state,
+        pokemons: [...state.pokemons, pokemon]
+    }
+}
 
 const removePokemon = (state: initState,  pokemon: TPokemon) => {
     const filtrados = state.pokemons.filter(x => x.id !== pokemon.id); 
@@ -42,22 +42,30 @@ const removePokemon = (state: initState,  pokemon: TPokemon) => {
         }
 }
 
+const findAll  = (state: initState) => {
+    return {
+        ...state
+    }
+}
 
 
-export const pokemonReducer = ( state: initState, action:ActionType) => {
+
+export const pokemonReducer = ( state: initState, action:ActionType) : initState => {
     const  { type } =  action;
     switch(type) {
        case PokemonActions.ADD :
-         return addPokemon(state, action.payload);   
-       case PokemonActions.REMOVE : 
-         return removePokemon(state, action.payload);      
+         return addPokemon(state, action.payload);
+       case PokemonActions.REMOVE:
+         return removePokemon(state, action.payload);
+       case PokemonActions.ALL :
+         return findAll(state);
        default: 
           return state   
     }
 }
 
-const INIT_STATE = {
-  pokemons: 0 
+const INIT_STATE  = {
+  pokemons: [] as TPokemon[] 
 }
 
 export const usePokemonContext =  () => {

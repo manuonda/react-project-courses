@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useReducer, useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
 
@@ -21,21 +21,27 @@ type  initialState {
 }
 
 
-const convertReducer = (state: initialState , action: actionConverter ) => {
+export const convertReducer = (state: initialState , action: actionConverter ) => {
     
    switch(action.type ) {
      case actions.DECIMAL : 
        return {
          ...state,
-         value: 
-       }
+         value: parseInt(action.payload.toString(),16) 
+       };
+      case actions.HEXADECIMAL : 
+      return{
+        ...state,
+        value: action.payload.toString(16)
+      }
+      default: return state; 
    }
 }
 
 
 function App() {
   const [count, setCount] = useState(0)
-  const [state, dispatch] = useState()
+  const [state, dispatch] = useReducer(convertReducer,{ value: 0 });
   return (
     <>
     </>  

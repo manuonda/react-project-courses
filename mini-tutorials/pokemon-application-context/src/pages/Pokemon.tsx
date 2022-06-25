@@ -11,15 +11,15 @@ interface IProps  {
 const Pokemon =({ listado}: IProps) => {
   
   const context = useContext(PokemonContext);
-  
+  const[state, dispatch] = useContext(PokemonContext);
   
   console.log('context');
   console.log(context);
   return(
       <>
       <PokemonProvider>
-      <PokemonList listado={listado}></PokemonList>
-       <Pokedex></Pokedex>  
+        <PokemonList listado={state}></PokemonList>
+        <Pokedex dispatch={dispatch}></Pokedex>  
       </PokemonProvider>
       </>
   )
