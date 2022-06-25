@@ -21,7 +21,7 @@ export const PokemonProvider = ( {children} : Props) => {
     };
 
   return(
-      <Provider value={providerValue}>
+       <Provider value={providerValue}>
         {children}
       </Provider>
   )
