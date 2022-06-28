@@ -10,15 +10,11 @@ export type PokemonContextType = {
   dispatch: any
 }
 
-
 type IContextProps = {
   state:  initialStateTypePokemon,
   dispatch: Dispatch<ActionTypePokemon>;
 }
-export const PokemonContext = createContext<{ 
-      state: initialStateTypePokemon;
-      dispatch: Dispatch<ActionTypePokemon>
-    }>({ 
+export const PokemonContext = createContext<IContextProps>({ 
          state:  initialStatePokemon , 
          dispatch : () => null 
     });
