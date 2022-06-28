@@ -1,7 +1,7 @@
 import { useReducer } from "react";
 import { TPokemon } from "../../type"
 
-enum PokemonActions  {
+enum PokemonEnumActions  {
     ADD = "ADD",
     UPDATE = "UPDATE",
     FIND = "FIND",
@@ -10,31 +10,31 @@ enum PokemonActions  {
 }
 
 
-type ActionType = | {
-    type : PokemonActions.ADD,
+export type ActionTypePokemon = | {
+    type : PokemonEnumActions.ADD,
     payload: TPokemon
 }| {
-    type: PokemonActions.REMOVE,
+    type: PokemonEnumActions.REMOVE,
     payload: TPokemon
 } | {
-    type: PokemonActions.ALL
+    type: PokemonEnumActions.ALL
 }
 
 
 
-type initState  =  {
+export type initStatePokemon  =  {
   pokemons : Array<TPokemon>
 }
 
 
-const addPokemon  = (state: initState, pokemon: TPokemon): initState => {
+const addPokemon  = (state: initStatePokemon, pokemon: TPokemon): initStatePokemon => {
     return {
         ...state,
         pokemons: [...state.pokemons, pokemon]
     }
 }
 
-const removePokemon = (state: initState,  pokemon: TPokemon) => {
+const removePokemon = (state: initStatePokemon,  pokemon: TPokemon) => {
     const filtrados = state.pokemons.filter(x => x.id !== pokemon.id); 
         return {
             ...state ,
@@ -42,22 +42,21 @@ const removePokemon = (state: initState,  pokemon: TPokemon) => {
         }
 }
 
-const findAll  = (state: initState) => {
+const findAll  = (state: initStatePokemon) => {
     return {
         ...state
     }
 }
 
 
-
-export const pokemonReducer = ( state: initState, action:ActionType) : initState => {
+export const pokemonReducer = ( state: initStatePokemon, action:ActionTypePokemon) : initStatePokemon => {
     const  { type } =  action;
     switch(type) {
-       case PokemonActions.ADD :
+       case PokemonEnumActions.ADD :
          return addPokemon(state, action.payload);
-       case PokemonActions.REMOVE:
+       case PokemonEnumActions.REMOVE:
          return removePokemon(state, action.payload);
-       case PokemonActions.ALL :
+       case PokemonEnumActions.ALL :
          return findAll(state);
        default: 
           return state   
@@ -68,7 +67,7 @@ const INIT_STATE  = {
   pokemons: [] as TPokemon[] 
 }
 
-export const usePokemonContext =  () => {
+export const useReducerPokemon =  () => {
      return useReducer(pokemonReducer, INIT_STATE);
 }
 

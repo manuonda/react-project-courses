@@ -6,9 +6,10 @@ import { TPokemon } from '../../type';
 interface Props {
    dispatch: any
 }
-export const Pokedex = ({ dispatch}:Props) => {
+export const Pokedex = () => {
   return (
     <>
+    POKEDEX
     </>
   )
 }
