@@ -1,5 +1,5 @@
 import { createContext ,Dispatch,useState} from "react";
-import { ActionTypePokemon, initStatePokemon, useReducerPokemon } from "../pages/reducers/pokemonReducer";
+import { ActionTypePokemon, initialStatePokemon, initialStateTypePokemon,  useReducerPokemon } from "../pages/reducers/pokemonReducer";
 
 interface Props {
   children: any
@@ -11,11 +11,17 @@ export type PokemonContextType = {
 }
 
 
-interface IContextProps{
-  state: initStatePokemon,
+type IContextProps = {
+  state:  initialStateTypePokemon,
   dispatch: Dispatch<ActionTypePokemon>;
 }
-export const PokemonContext = createContext({} as IContextProps);
+export const PokemonContext = createContext<{ 
+      state: initialStateTypePokemon;
+      dispatch: Dispatch<ActionTypePokemon>
+    }>({ 
+         state:  initialStatePokemon , 
+         dispatch : () => null 
+    });
 
 export const {Provider} = PokemonContext;
 

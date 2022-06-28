@@ -4,12 +4,9 @@ import { TPokemon } from "../type";
 import Pokedex from "./components/Pokedex";
 import PokemonList from "./components/PokemonList";
 
-interface IProps  {
-   
-}
-
 const Pokemon =() => {
   const context = useContext(PokemonContext);
+  console.log('context : ', context);
   if ( context === undefined) {
     return (<div>
       <h1>No se creo context</h1>

@@ -1,5 +1,5 @@
 
-export interface TPokemon {
+interface  TPokemon  {
    id: number,
    name: string
 }

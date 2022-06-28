@@ -22,19 +22,18 @@ export type ActionTypePokemon = | {
 
 
 
-export type initStatePokemon  =  {
+export type initialStateTypePokemon  =  {
   pokemons : Array<TPokemon>
 }
 
-
-const addPokemon  = (state: initStatePokemon, pokemon: TPokemon): initStatePokemon => {
+const addPokemon  = (state: initialStateTypePokemon, pokemon: TPokemon): initialStateTypePokemon => {
     return {
         ...state,
         pokemons: [...state.pokemons, pokemon]
     }
 }
 
-const removePokemon = (state: initStatePokemon,  pokemon: TPokemon) => {
+const removePokemon = (state: initialStateTypePokemon,  pokemon: TPokemon) => {
     const filtrados = state.pokemons.filter(x => x.id !== pokemon.id); 
         return {
             ...state ,
@@ -42,14 +41,14 @@ const removePokemon = (state: initStatePokemon,  pokemon: TPokemon) => {
         }
 }
 
-const findAll  = (state: initStatePokemon) => {
+const findAll  = (state: initialStateTypePokemon) => {
     return {
         ...state
     }
 }
 
 
-export const pokemonReducer = ( state: initStatePokemon, action:ActionTypePokemon) : initStatePokemon => {
+export const pokemonReducer = ( state: initialStateTypePokemon, action:ActionTypePokemon) : initialStateTypePokemon => {
     const  { type } =  action;
     switch(type) {
        case PokemonEnumActions.ADD :
@@ -62,13 +61,13 @@ export const pokemonReducer = ( state: initStatePokemon, action:ActionTypePokemo
           return state   
     }
 }
-
-const INIT_STATE  = {
+export 
+const initialStatePokemon  = {
   pokemons: [] as TPokemon[] 
 }
 
 export const useReducerPokemon =  () => {
-     return useReducer(pokemonReducer, INIT_STATE);
+     return useReducer(pokemonReducer, initialStatePokemon);
 }
 
 
