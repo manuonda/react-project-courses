@@ -1,7 +1,8 @@
 
-interface  TPokemon  {
+type  TPokemon  =  {
    id: number,
-   name: string
+   name: string, 
+   url: string
 }
 
 

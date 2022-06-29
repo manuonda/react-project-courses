@@ -1,12 +1,14 @@
 import { useReducer } from "react";
 import { TPokemon } from "../../type"
+import Pokemon from "../Pokemon";
 
-enum PokemonEnumActions  {
+export enum PokemonEnumActions  {
     ADD = "ADD",
     UPDATE = "UPDATE",
     FIND = "FIND",
     ALL = "ALL" ,
-    REMOVE = "REMOVE"
+    REMOVE = "REMOVE",
+    ADD_ALL = "ADD_ALL",
 }
 
 
@@ -18,19 +20,31 @@ export type ActionTypePokemon = | {
     payload: TPokemon
 } | {
     type: PokemonEnumActions.ALL
+} | {
+     type: PokemonEnumActions.ADD_ALL,
+     payload: TPokemon[]
 }
-
 
 
 export type initialStateTypePokemon  =  {
-  pokemons : Array<TPokemon>
+  pokemons : TPokemon[],
+  limit?: number
 }
 
+
+// actions pokemon
 const addPokemon  = (state: initialStateTypePokemon, pokemon: TPokemon): initialStateTypePokemon => {
     return {
         ...state,
         pokemons: [...state.pokemons, pokemon]
     }
+}
+
+const addPokemons = (state: initialStateTypePokemon, pokemons:TPokemon[]) => {
+     return{
+        ...state,
+        pokemons: [...state.pokemons, ...pokemons]
+     }
 }
 
 const removePokemon = (state: initialStateTypePokemon,  pokemon: TPokemon) => {
@@ -57,19 +71,18 @@ export const pokemonReducer = ( state: initialStateTypePokemon, action:ActionTyp
          return removePokemon(state, action.payload);
        case PokemonEnumActions.ALL :
          return findAll(state);
+       case PokemonEnumActions.ADD_ALL:
+        return addPokemons(state, action.payload);
        default: 
           return state   
     }
 }
 export 
 const initialStatePokemon  = {
-  pokemons: [] as TPokemon[] 
+  pokemons: [] as TPokemon[],
+  limit:0, 
 }
 
 export const useReducerPokemon =  () => {
      return useReducer(pokemonReducer, initialStatePokemon);
 }
-
-
-
-

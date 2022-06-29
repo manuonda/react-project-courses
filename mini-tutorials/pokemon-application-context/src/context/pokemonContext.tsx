@@ -1,33 +1,47 @@
 import { createContext ,Dispatch,useState} from "react";
-import { ActionTypePokemon, initialStatePokemon, initialStateTypePokemon,  useReducerPokemon } from "../pages/reducers/pokemonReducer";
+import { ActionTypePokemon, initialStatePokemon, initialStateTypePokemon,  PokemonEnumActions,  useReducerPokemon } from "../pages/reducers/pokemonReducer";
+import { TPokemon } from "../type";
 
 interface Props {
   children: any
 }
 
-export type PokemonContextType = {
-  state: any,
-  dispatch: any
-}
-
-type IContextProps = {
+// IContext Props
+export type ContextPokemonProps =   {
   state:  initialStateTypePokemon,
-  dispatch: Dispatch<ActionTypePokemon>;
+  addPokemons: (pokemons: TPokemon[]) => void,
+  pruebaMundo : () => void
 }
-export const PokemonContext = createContext<IContextProps>({ 
-         state:  initialStatePokemon , 
-         dispatch : () => null 
-    });
 
-export const {Provider} = PokemonContext;
+const initStateContext = { 
+    state:  initialStatePokemon , 
+    addPokemons: () => {},
+    pruebaMundo :() => {} 
+}
 
-export const PokemonProvider = ( {children} : Props) => {
-    const [state, dispatch] = useReducerPokemon(); 
-    const providerValue = {
-      state,
-      dispatch 
-    };
+// init createContext with values
+export const PokemonContext = createContext<ContextPokemonProps>(initStateContext);
 
+export const PokemonProvider = ({children} : Props) => {
+      const [state, dispatch] = useReducerPokemon(); 
+      
+      const pruebaMundo = () => {
+        console.log("prueba Mundo");
+      }
+      const addPokemons = () => {
+          console.log('ejecuta pokemons add pokemons');
+          console.log('addPokemons : ');
+          dispatch({ type: PokemonEnumActions.ADD_ALL, 
+                           payload: [{ id:1, name: 'prueba', url:'indefindo'}]
+          });
+      }
+ 
+     const providerValue: initialStateTypePokemon = {
+        state,
+        addPokemons,
+        pruebaMundo
+      };
+      
   return(
        <PokemonContext.Provider value={providerValue}>
         {children}

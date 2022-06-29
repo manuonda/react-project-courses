@@ -1,30 +1,41 @@
 import { useContext, useEffect } from "react";
-import { PokemonContext, PokemonContextType, PokemonProvider, Provider } from "../context/pokemonContext";
-import { TPokemon } from "../type";
+import { ContextPokemonProps, PokemonContext, PokemonProvider  } from "../context/pokemonContext";
 import Pokedex from "./components/Pokedex";
 import PokemonList from "./components/PokemonList";
 
 const Pokemon =() => {
-  const context = useContext(PokemonContext);
+  const context = useContext(PokemonContext) as ContextPokemonProps;
+  const url = "https://pokeapi.co/api/v2/pokemon";
+
   console.log('context : ', context);
   if ( context === undefined) {
     return (<div>
       <h1>No se creo context</h1>
     </div> )
   }
-  const {state , dispatch }  = context;
-  
-  console.log('context : ', context);
-  console.log(state, dispatch);
+  let { state: {pokemons} , addPokemons , pruebaMundo}  = context;
   
   useEffect(() => {
-    
-  }); 
+    console.log('useEffect Pokemon');
+    const cargarData = async () =>{
+       pruebaMundo();
+       try {
+          const resp = await fetch(url);
+          const data = await(resp.json());
+          pokemons = [...pokemons ,{id:1, name:"prueba",url: "12313"}];
+          addPokemons(data.results);
+       } catch (error) {
+           console.error(error); 
+       }
+    }
+
+     cargarData();
+  },[pruebaMundo]); 
 
   return(
       <>
       <PokemonProvider>
-        <PokemonList listado={state.pokemons}></PokemonList>
+        <PokemonList listado={pokemons}></PokemonList>
         <Pokedex></Pokedex>  
       </PokemonProvider>
       </>
