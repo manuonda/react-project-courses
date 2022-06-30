@@ -1,4 +1,4 @@
-import { createContext ,Dispatch,useState} from "react";
+import React, { createContext ,Dispatch,useState} from "react";
 import { ActionTypePokemon, initialStatePokemon, initialStateTypePokemon,  PokemonEnumActions,  useReducerPokemon } from "../pages/reducers/pokemonReducer";
 import { TPokemon } from "../type";
 
@@ -7,20 +7,20 @@ interface Props {
 }
 
 // IContext Props
-export type ContextPokemonProps =   {
+export type  ContextPokemonProps =  {
   state:  initialStateTypePokemon,
   addPokemons: (pokemons: TPokemon[]) => void,
-  pruebaMundo : () => void
+  addPokemon: (pokemon:TPokemon) => void,
 }
 
-const initStateContext = { 
+const contextDefaultValue : ContextPokemonProps = { 
     state:  initialStatePokemon , 
     addPokemons: () => {},
-    pruebaMundo :() => {} 
+    addPokemon: () => {}
 }
 
 // init createContext with values
-export const PokemonContext = createContext<ContextPokemonProps>(initStateContext);
+export const PokemonContext = createContext<ContextPokemonProps>(contextDefaultValue);
 
 export const PokemonProvider = ({children} : Props) => {
       const [state, dispatch] = useReducerPokemon(); 
@@ -35,11 +35,17 @@ export const PokemonProvider = ({children} : Props) => {
                            payload: [{ id:1, name: 'prueba', url:'indefindo'}]
           });
       }
+
+      /** Add Pokemon */
+      const addPokemon = (pokemon: TPokemon) => {
+        console.log('add pokemon', pokemon);
+        dispatch({ type : PokemonEnumActions.ADD, payload: pokemon});
+      }
  
-     const providerValue: initialStateTypePokemon = {
+     const providerValue = {
         state,
         addPokemons,
-        pruebaMundo
+        addPokemon
       };
       
   return(
@@ -48,4 +54,6 @@ export const PokemonProvider = ({children} : Props) => {
       </PokemonContext.Provider>
   )
 };
+
+export default PokemonProvider;
 

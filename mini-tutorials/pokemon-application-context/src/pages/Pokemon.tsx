@@ -13,12 +13,12 @@ const Pokemon =() => {
       <h1>No se creo context</h1>
     </div> )
   }
-  let { state: {pokemons} , addPokemons , pruebaMundo}  = context;
+  let { state: {pokemons} , addPokemons, addPokemon}  = context;
   
   useEffect(() => {
     console.log('useEffect Pokemon');
     const cargarData = async () =>{
-       pruebaMundo();
+       
        try {
           const resp = await fetch(url);
           const data = await(resp.json());
@@ -30,11 +30,16 @@ const Pokemon =() => {
     }
 
      cargarData();
-  },[pruebaMundo]); 
+  },[addPokemons]); 
 
+  const addPokemon2 = () => {
+    alert("addPokemon2  "); 
+    addPokemon({id:1, name:'prueba', url: "url numeo"})
+  }
   return(
       <>
       <PokemonProvider>
+        <button onClick={ addPokemon2}>Add Pokemon</button>
         <PokemonList listado={pokemons}></PokemonList>
         <Pokedex></Pokedex>  
       </PokemonProvider>
