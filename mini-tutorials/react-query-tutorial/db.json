@@ -4,7 +4,8 @@
       "id": 1,
       "title": "json-server 1",
       "author": "typicode1"
-    }, {
+    },
+    {
       "id": 2,
       "title": "json-server2",
       "author": "typicode2"
@@ -18,6 +19,16 @@
       "id": 4,
       "title": "json-server4",
       "author": "typicode4"
+    },
+    {
+      "title": "asdf",
+      "body": "asdfs",
+      "id": 5
+    },
+    {
+      "title": "uno",
+      "body": "dos",
+      "id": 6
     }
   ],
   "comments": [

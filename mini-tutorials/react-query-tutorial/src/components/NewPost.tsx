@@ -1,28 +1,48 @@
 import React, { useState } from "react";
+import { useMutation, useQueryClient } from "react-query";
 import { createNewPost } from "../api/posts";
+import { useMutatePost } from "../hooks/posts";
 
 function NewPost() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState({});
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState({});
+
+  const queryClient = useQueryClient();
+  // const {mutate, isError, isLoading, isSuccess,reset} = useMutation(createNewPost,{
+  //   onSuccess:(post) => {
+  //     queryClient.setQueryData(["posts"],(prevPosts:any) => prevPosts.concat(post) )
+  //     queryClient.invalidateQueries(["posts"]) //revalidacion de los datos
+  //   }
+  // });
+
+   const {mutate, isError, isLoading, isSuccess,reset} = useMutatePost();
+
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
+     mutate({title, body} ,{
+       onSuccess:  () => {
+         setTitle("")
+         setBody("")
+       }
+     });
+    // setIsLoading(true);
+    // try {
+    //   await createNewPost({ title, body });
 
-    setIsLoading(true);
-    try {
-      await createNewPost({ title, body });
+    //   setTitle("");
+    //   setBody("");
+    // } catch (error:any) {
+    //   setError(error);
+    // }
 
-      setTitle("");
-      setBody("");
-    } catch (error:any) {
-      setError(error);
-    }
-
-    setIsLoading(false);
+    // setIsLoading(false);
   };
+
+
 
   return (
     <section>
@@ -62,15 +82,17 @@ function NewPost() {
             "Submit"
           )}
         </button>
-        {error && (
+        {isError && (
           <p className="alert alert-danger">
-            Error creating the post: {error.message}
+            Error creating the post: {isError}
           </p>
         )}
-        {/* <div className="alert alert-success alert-dismissible" role="alert">
+       {isSuccess && (
+          <div className="alert alert-success alert-dismissible" role="alert">
           The post was saved successfuly
-          <button type="button" className="btn-close"></button>
-        </div> */}
+          <button  onClick={reset} type="button" className="btn-close"></button>
+        </div>
+       )}
       </form>
     </section>
   );
