@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useSyncExternalStore } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams ,Link } from 'react-router-dom';
-import { addUser } from '../features/users/userSlice';
+import { addUser, updateUser } from '../features/users/userSlice';
 import { TUser } from '../type';
 import { v4 as uuid } from 'uuid';
 
@@ -9,7 +9,7 @@ import { v4 as uuid } from 'uuid';
 export const UserForm = () => {
 
   const dispatch = useDispatch()
-  const { state: users} = useSelector( (state:any) => state.users);
+  const { users } = useSelector( (state:any) => state.users);
   console.log('state users : ',users);
   const [usuario, setUsuario] = useState<TUser>({
      id: "",
@@ -20,28 +20,33 @@ export const UserForm = () => {
   const navigate = useNavigate();
   const params = useParams();
   const {id } = params;
+
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (usuario.id === "" || usuario.id === null) {
         usuario.id = uuid();
+        dispatch(addUser(usuario)); 
+      } else {
+        dispatch(updateUser(usuario));
       }
-      dispatch(addUser(usuario)); 
+     
       navigate("/");
   }
 
   const handleChange =(e: React.ChangeEvent<HTMLInputElement>)=> {
-    setUsuario({
+    setUsuario((usuario:TUser) => ({
       ...usuario,
       [e.target.name] : e.target.value
-    })
+    }));
   }
 
 
   useEffect(() => {
     if (id !== undefined) {
-        const find = users.find( (x:TUser) => x.id === parseInt(id));
+        const find = users.find( (x:TUser) => x.id === id);
         if (find ) {
-          setUsuario(find);
+          setUsuario({...find});
         }
     }  
   },[])
@@ -55,7 +60,7 @@ export const UserForm = () => {
         Username
       </label>
       <input name="username" onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" 
-             id="username" type="text" placeholder="Username"/>
+             id="username" value={usuario.username} type="text" placeholder="Username"/>
     </div>
     <div className="mb-6">
       <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -63,8 +68,9 @@ export const UserForm = () => {
       </label>
       <input type="text" 
              name="lastname"
+             onChange={handleChange}
              className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" 
-             id="password"/>
+             id="password" value={usuario.lastname}/>
       
     </div>
     <div className="flex items-center justify-between">

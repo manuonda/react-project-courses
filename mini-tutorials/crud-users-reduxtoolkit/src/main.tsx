@@ -13,14 +13,7 @@ import './index.css'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<UserList></UserList>}></Route>
-        <Route path="/create-user" element={<UserForm></UserForm>}></Route>
-        <Route path="/edit-user/:id" element={<UserForm></UserForm>}></Route> 
-      </Routes>
-       <App />
-      </BrowserRouter>
+     <App></App>
     
     </Provider>
    
