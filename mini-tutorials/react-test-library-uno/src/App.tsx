@@ -10,7 +10,9 @@ function getUser() {
 
 function App() {
   const[search, setSearch] = useState();
-  const [user, setUser] = React.useState({});
+  const [user, setUser] = React.useState({
+    name: ""
+  });
 
   React.useEffect(() => {
     const loadUser = async () => {
