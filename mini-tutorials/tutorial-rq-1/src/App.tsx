@@ -5,10 +5,16 @@ import Users from './Users'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [ userId, setUserId] = useState();
+
 
   return (
     <>
-     <Users></Users>
+     <div style={{ padding: 20, width:'30%'}}>
+
+     </div>
+     <Users setUserId={setUserId}></Users>
+     {userId}
     </>
   )
 }

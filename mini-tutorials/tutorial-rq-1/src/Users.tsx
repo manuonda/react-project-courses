@@ -3,7 +3,12 @@ import { useQuery } from 'react-query';
 import * as api from "../src/api/api";
 
 
-export const Users = () => {
+interface Ipros {
+    setUserId: React.Dispatch<React.SetStateAction<undefined>>
+    ;
+}
+
+export const Users = ({setUserId}: Ipros) => {
     const  {data , isLoading, status, isSuccess, isError }  = useQuery('users', api.getAll,{
         retry: false
     });
@@ -20,7 +25,9 @@ export const Users = () => {
     <div>
         <ul>
         { data && data.map((user:any) => (
-           <li key={user.id}>{user.nombre}</li>
+           <li key={user.id}>{user.nombre}
+           <button onClick={() => setUserId(user.id)}>View</button>
+           </li>
         ))}
         </ul>
        </div>

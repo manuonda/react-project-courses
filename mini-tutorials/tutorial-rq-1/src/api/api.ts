@@ -15,7 +15,7 @@ export const postUser = async () => {
 }
 
 export const getById = async (id:any) => {
-   const resp = await axios(`${API_URL}/users/${id}`);
-   return resp;   
+   const {data, status} = await axios(`${API_URL}/users/${id}`);
+   return data;   
 }
 
