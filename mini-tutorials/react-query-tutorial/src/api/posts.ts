@@ -25,3 +25,7 @@ export const createNewPost = async (post: any) => {
    const {data} = await axios.post(`${API}/posts`, post);
    return data;
 }
+
+export const updatePost =async (post:any) => {
+    axios.put(`${API}/posts/${post.id}`,post);
+}

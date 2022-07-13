@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nombre": "json-server1",
+      "author": "typicode1"
+    },
+    {
+      "id": 2,
+      "nombre": "json-server2",
+      "author": "typicode2"
+    },
+    {
+      "id": 3,
+      "nombre": "json-server3",
+      "author": "typicode3"
+    }
+  ]
+}
