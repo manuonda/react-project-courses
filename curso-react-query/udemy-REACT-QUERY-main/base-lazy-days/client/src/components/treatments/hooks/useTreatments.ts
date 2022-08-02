@@ -20,7 +20,10 @@ export function useTreatments(): Treatment[] {
   //     toast({ title, status: 'error' });
   //   },
   // });
-  const { data = fallback } = useQuery([queryKeys.treatments], getTreatments);
+  const { data = fallback } = useQuery([queryKeys.treatments], getTreatments, {
+    staleTime: 60000,
+    refetchInterval: 60000, // every 1 second
+  });
   return data;
 }
 
