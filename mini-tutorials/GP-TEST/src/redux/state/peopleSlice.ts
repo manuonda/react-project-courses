@@ -12,9 +12,17 @@ const initialState : People = {
 
 export const peopleSlice = createSlice({
     name: 'people',
-    initialState,
+    initialState: localStorage.getItem('people') ? JSON.parse(localStorage.getItem('people') as string) : initialState,
     reducers : {
+        addPeople: (state, action) => {
 
+        },
+        removePeople : (state, action) => {
+
+        },
+        listPeople: (state, action) => {
+            
+        }
     }
 })
 
