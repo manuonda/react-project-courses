@@ -1,4 +1,6 @@
-import { Person } from "@/models";
+import { LocalStorageTypes, Person } from "@/models";
+import { getLocalStoraget, setLocalStorage } from "@/utils";
+import { LocalHospitalTwoTone } from "@mui/icons-material";
 import { createSlice } from "@reduxjs/toolkit";
 
 
@@ -10,21 +12,19 @@ const initialState : People = {
     people:[]
 }
 
+
+
+
 export const peopleSlice = createSlice({
     name: 'people',
-    initialState: localStorage.getItem('people') ? JSON.parse(localStorage.getItem('people') as string) : initialState,
+    initialState: localStorage.getItem(LocalStorageTypes.PEOPLE) ? JSON.parse(getLocalStoraget(LocalStorageTypes.PEOPLE) as string) : initialState,
     reducers : {
         addPeople: (state, action) => {
-
-        },
-        removePeople : (state, action) => {
-
-        },
-        listPeople: (state, action) => {
-            
+            setLocalStorage(LocalStorageTypes.PEOPLE, state);
+            return action.payload;
         }
     }
 })
 
-export const {} =  peopleSlice.actions;
-export default peopleSlice.reducer;
+export const {addPeople} =  peopleSlice.actions;
+export default peopleSlice;
