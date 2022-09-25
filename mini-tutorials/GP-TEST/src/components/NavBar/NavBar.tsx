@@ -6,12 +6,24 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
+import { dialogOpenSubject$ } from '../CustomDialog/CustomDialog';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { CustomDialog } from '../CustomDialog';
+import { FavoriteTable } from './FavoriteTable';
 
 export interface NavBarInterface { }
 
 const NavBar: React.FC<NavBarInterface> = () => {
+
+    const handleClick = () => {
+        dialogOpenSubject$.setSubject = true;
+    };
+
     return (<>
-        <Box sx={{ flexGrow: 1 }}>
+            
+            <CustomDialog>
+                <FavoriteTable></FavoriteTable>
+            </CustomDialog>
             <AppBar position="fixed">
                 <Toolbar>
                     <IconButton
@@ -24,13 +36,14 @@ const NavBar: React.FC<NavBarInterface> = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        News
+                      Gentleman Programming React Test
                     </Typography>
-                    <Button color="inherit">Login</Button>
                 </Toolbar>
+                <IconButton color="secondary" aria-label="favorites" component="label" onClick={handleClick}>
+            <FavoriteIcon />
+          </IconButton>
             </AppBar>
-        </Box>
-
+        
     </>)
 }
 

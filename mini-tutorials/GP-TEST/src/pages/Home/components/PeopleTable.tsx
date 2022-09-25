@@ -1,8 +1,10 @@
 import { Person } from "@/models";
+import { addFavorites } from "@/redux/state";
 import { AppStore } from "@/redux/store";
 import Checkbox from "@material-ui/core/Checkbox";
+import { SosTwoTone } from "@mui/icons-material";
 import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
@@ -17,10 +19,15 @@ const PeopleTable : React.FC<InterfaPeopleTable>  = () => {
     const [selectedPeople, setSelectedPeople] = useState<Person[]>([]);
     const dispatch = useDispatch()
 
-    const findPerson = (person: Person) => !!selectedPeople.find(p => p.id === person.id);
+    const statePeople = useSelector((store :AppStore) => store.people);
+    const favoritePeoploe = useSelector((store:AppStore) => store.favorites);
+
+    
+
+    const findPerson = (person: Person) => !!favoritePeoploe.find(p => p.id === person.id);
     const filterPerson = (person: Person) => selectedPeople.filter(p => p.id !== person.id);
      
-    const statePeople = useSelector((store :AppStore) => store.people);
+
 
    
      // checked :person not exist  
@@ -29,6 +36,8 @@ const PeopleTable : React.FC<InterfaPeopleTable>  = () => {
         dispatch(addFavorites(filteredPerson))
         setSelectedPeople(filteredPerson);
    }
+
+
 
    const columns = [{
         field: 'actions',
@@ -62,8 +71,17 @@ const PeopleTable : React.FC<InterfaPeopleTable>  = () => {
         flex: 1,
         minWidth: 150,
         renderCell: (params: GridRenderCellParams) => <>{params.value}</>
-   }
+   },{
+     field: 'levelOfHappiness',
+     headerName: 'Level of',
+     flex: 1,
+     renderCell: (params: GridRenderCellParams) => <>{params.value}</>
+    }
    ];
+
+   useEffect(() => {
+     setSelectedPeople(favoritePeoploe)
+   },[favoritePeoploe])
 
    return (
         <DataGrid
