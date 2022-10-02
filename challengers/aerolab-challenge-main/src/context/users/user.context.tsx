@@ -2,7 +2,8 @@ import React from "react";
 import {Center, CircularProgress} from "@chakra-ui/react";
 
 import {IUser} from "~/models";
-import servicePerson from "~/services/service.person";
+
+import servicePerson from "@/services/service.person";
 
 export interface Context {
   state: {
@@ -20,7 +21,7 @@ const UserProvider: React.FC = ({children}) => {
   const [status, setStatus] = React.useState<"pending" | "resolved" | "rejected">("pending");
 
   React.useEffect(() => {
-    servicePerson.fetch().then((user) => {
+    servicePerson.fetch().then((user: IUser) => {
       setUser(user);
       setStatus("resolved");
     });
