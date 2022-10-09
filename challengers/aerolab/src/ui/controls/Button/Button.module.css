@@ -1,0 +1,19 @@
+.container {
+   cursor: pointer;
+   font-size: 18px;
+   font-weight: 500;
+   border: none;
+   border-radius: 4px;
+   transition: background-color 0-25s linear;
+   padding: 12px 36px;
+     
+}
+
+
+&.primary{
+   background-color: dodgerblue;
+   color: white;  
+} 
+
+
+
