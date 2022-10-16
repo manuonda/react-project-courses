@@ -4,7 +4,7 @@ export default extendTheme({
   styles: {
     global: {
       body: {
-        color: "blackAlpha.900",
+        color: "blackAlpha.1200",
       },
     },
   },
