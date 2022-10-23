@@ -8,18 +8,33 @@ import noteService from './services/note.service';
 import { NoteCard } from './components/NoteCard';
 
 
+type NoteModalProps = {
+  note: Partial<Note>,
+  onClose: VoidFunction
+}
+
 function NoteModal({ onClose }: NoteModalProps) {
   return (
     <section 
-    style={{ width: '100vw', height: '100vw', position: 'fixed', top: 0, left: 0 }}
+      style={{ width: '100vw', height: '100vw', position: 'fixed', top: 0, left: 0 }}
       className="nes-dialog" id="dialog-default">
         <div style={{ position:'absolute',
          display:'flex', alignItems:'center', justifyContent: 'center',
         backgroundColor: "rgba(0,0,0,0.2)" , width:'100%', height:'100%'}} />
       <form method="dialog" style={{backgroundColor: "white" , zIndex:1, padding:12 ,border:'5px solid black'}}>
-        <p className="title">Dialog</p>
-        <p>Alert: this is a dialog.</p>
-        <menu className="dialog-menu">
+        <p className='title'>Create/Edit Note</p>
+        <div className='nes-field'>
+          <label htmlFor="name_field">Your name</label>
+          <input type="text" id="name_field" className='nes-input'></input>
+        </div>
+
+        <div className='nes-field'>
+          <label htmlFor='content'>Content</label>
+          <textarea className='nes-textarea' id="content"></textarea>
+
+        </div>
+        
+        <menu  style={{display:'flex' , alignItems:'center', justifyContent:'center' }} className="dialog-menu">
           <button className="nes-btn" onClick={onClose}>Cancel</button>
           <button className="nes-btn is-primary">Confirm</button>
         </menu>
@@ -32,13 +47,7 @@ function NoteModal({ onClose }: NoteModalProps) {
 function App() {
   const [notes, setNotes] = React.useState<Note[]>([]);
   const [loading, setLoading] = React.useState<boolean>(true);
-  const [dfaft,setDraft] =  React.useState< null | Partial<Note>>(null);
-
-
-  type NoteModalProps = {
-    note: Partial<Note>,
-    onClose: VoidFunction
-  }
+  const [draft,setDraft] =  React.useState< null | Partial<Note>>(null);
 
 
   const handleDelete = (id: Note['id']): void => {
@@ -58,6 +67,10 @@ function App() {
         };
       })
     );
+  }
+
+  const handleClose = () => {
+
   }
 
   useEffect(() => {
@@ -84,8 +97,10 @@ function App() {
     <div style={{ marginBottom: 24 }}>
 
       <h1>Mis Notas</h1>
-      <button>Crear Nota</button>
-      <div style={{
+      <button onClick={() => setDraft({
+        title:'mi nota'
+      })}>Crear Nota</button>
+      <div style={{ 
         display: 'grid',
         alignItems: "center",
         gap: 24,
@@ -97,7 +112,7 @@ function App() {
             key={note.id} note={note} />
         ))}
       </div>
-       {  dfaft && <NoteModal note={draft} onClose></NoteModal>
+       {  draft && <NoteModal note={draft} onClose={() => setDraft(null)}></NoteModal> }
     </div>
   )
 }
