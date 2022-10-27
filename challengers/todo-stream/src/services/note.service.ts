@@ -19,10 +19,21 @@ const NOTAS:Array<Note> = [
 ];
 
 
-const list = (): Promise<Note[]>  =>  {
-    return  Promise.resolve(NOTAS);         
+const list = (): Note[]  =>  {
+  try {
+    const todos =  JSON.parse(localStorage.getItem('todos') || "[]" );
+    return  todos; 
+  } catch (error) {
+    return [];
+  }    
+}
+
+const set = (notes:Note[]) => {
+    console.log('notes todos: ', notes);
+    localStorage.setItem('todos', JSON.stringify(notes));
 }
 
 export default {
      list,
+     set
 }

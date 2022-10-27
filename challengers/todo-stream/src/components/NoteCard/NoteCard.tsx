@@ -10,7 +10,7 @@ export interface NoteCardProps{
 
 const NoteCard : React.FC<NoteCardProps> = ({ note,onArchive,onDelete, onEdit }:NoteCardProps) => {
 	return (
-		<div className="nes-container with-title is-centered">
+		<div className="nes-container with-title is-centered" data-testid="todo">
 		  <div>
 			<h3><strong>{note.title}</strong></h3>
 		    <span>Last Edit : {note.lastEdit}</span>

@@ -12,13 +12,20 @@ import { NoteModal } from './components';
 
 
 function App() {
-  const [notes, setNotes] = React.useState<Note[]>([]);
+  const [notes, setNotes] = React.useState<Note[]>(noteService.list());
   const [loading, setLoading] = React.useState<boolean>(true);
   const [draft,setDraft] =  React.useState< null | Partial<Note>>(null);
   const [view , setView] = React.useState<"active" | "archived">("active");
   
   const matches = useMemo(() => {
-
+    console.log("userMemo");
+    return notes.filter(note =>  {
+      if ( view  === "active") {
+        return !note.archived
+      } else if ( view === "archived") {
+        return note.archived;
+      }
+    })
   },[notes,view]);
 
   const handleDelete = (id: Note['id']): void => {
@@ -79,45 +86,56 @@ function App() {
 
 
   useEffect(() => {
-    const cargarData = async () => {
-      try {
-        const resp = await noteService.list();
-        setNotes(resp);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-      }
-    }
-    setTimeout(() => {
-      cargarData();
-    }, 2000);
+    // const cargarData = async () => {
+    //   try {
+    //     const resp = await noteService.list();
+    //     setNotes(resp);
+    //     setLoading(false);
+    //   } catch (error) {
+    //     setLoading(false);
+    //   }
+    // }
+    // setTimeout(() => {
+    //   cargarData();
+    // }, 2000);
 
-  }, [])
+    console.log('notes : ', notes)
+    noteService.set(notes);
 
-  if (loading) {
-    return <>Loading...</>
-  }
+  }, [notes])
+
+  // if (loading) {
+  //   return <>Loading...</>
+  // }
 
   return (
     <div style={{ marginBottom: 24 }}>
 
       <h1>Mis Notas</h1>
-      <button onClick={() => setDraft({
+      <div style={{display: 'flex' , gap: 24, justifyContent:'center'}}>
+      <button className='nes-btn' onClick={() => setDraft({
         title:''
       })}>Crear Nota</button>
+      <button className='nes-btn' onClick={() => setView((view) => (view  === "active" ? "archived" :"active"))}> 
+       { view === "active" ? "Ver Archivadas": "Ver Activas"}
+      </button>
+      </div>
+      
       <div style={{ 
         display: 'grid',
         alignItems: "center",
         gap: 24,
         gridTemplateColumns: "repeat(auto-fill,minmax(480px, 1fr))"
       }}>
-        {notes.map((note: Note) => (
+        {matches.length ? matches.map((note: Note) => (
           <NoteCard 
             onEdit={handleEdit}
             onArchive={handleArchivo}
             onDelete={handleDelete}
             key={note.id} note={note} />
-        ))}
+        )) :
+          <p>No hay Notas</p>
+        }
       </div>
        {  draft && <NoteModal
           onSave={handleSave}
