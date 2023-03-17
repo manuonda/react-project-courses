@@ -22,11 +22,18 @@ const App = (): JSX.Element => {
   return (
     <BrowserRouter>
             <Navigation />
+             {
+              user ? (
+                <button onClick={logout}>Logout</button>
+              ) : (
+                <button onClick={login}>Login</button>
+              )
+             }
 
       <Routes>
         <Route path="/" element={<h1>Home</h1>}>
           <Route path="/landing" element={<Landing />}></Route>
-          <Route path="/home" element={<Home />}/>
+          <Route path="/home" element={<Home user={user}/>}/>
           <Route path="/dashboard" element={<Dashboard />}/>
           <Route path="/analytics" element={<Analitycs />}/>
           <Route path="/admin" element={<Admin />}/>
