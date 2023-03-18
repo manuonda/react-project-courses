@@ -1,18 +1,25 @@
 import { BrowserRouter, Link, Route, BrowserRouter as Router, Routes } from "react-router-dom"
 
+
 import {Admin, Analitycs, Dashboard, Home, Landing}  from "./pages";
 import { useState } from "react";
+import { User } from "./types";
+import { ProtectRouted } from "./components/ProtectRouted";
 
 const App = (): JSX.Element => {
-  const[user,setUser] = useState<User | null >({
+  const[user,setUser] = useState<User|null >({
     id: 0,
-    nombre: ""
+    nombre: "",
+    permissions:[],
+    roles:[]
   });
 
   const login = () => {
     setUser({
       id: 12,
-      nombre:'Jhon'
+      nombre:'Jhon',
+      permissions:["analize"],
+      roles:["admin"]
     });
   }
 
@@ -31,14 +38,31 @@ const App = (): JSX.Element => {
              }
 
       <Routes>
-        <Route path="/" element={<h1>Home</h1>}>
-          <Route path="/landing" element={<Landing />}></Route>
-          <Route path="/home" element={<Home user={user}/>}/>
-          <Route path="/dashboard" element={<Dashboard />}/>
-          <Route path="/analytics" element={<Analitycs />}/>
-          <Route path="/admin" element={<Admin />}/>
           
-        </Route>
+          <Route path="/" element={<h1>Home</h1>} />
+          <Route path="/landing" element={<Landing />} />
+         
+          {/* Multipe rutas */}
+          <Route element={<ProtectRouted isAllowed={!!user}  />}>
+              <Route path="/home" element={<Home />}/>
+              <Route path="/dashboard" element={<Dashboard />}/>
+          </Route>
+          
+           {/** Un solo componente */}
+          <Route path="/analytics" element={
+            <ProtectRouted 
+              isAllowed={!!user && user.permissions.includes('analize')}
+              reidrectTo="/home"
+              >
+              <Analitycs></Analitycs>
+            </ProtectRouted>
+          }/>
+          <Route path="/admin" element={
+            <ProtectRouted isAllowed={!!user && user.roles.includes('admin')}>
+              <Admin />
+            </ProtectRouted>
+          }/>
+          
       </Routes>
     </BrowserRouter>
   );
@@ -58,6 +82,9 @@ function Navigation(){
       </li>
       <li>
         <Link to="/analytics">Analytics</Link>
+      </li>
+      <li>
+        <Link to="/admin">Admin</Link>
       </li>
     </ul>
   )
