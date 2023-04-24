@@ -32,9 +32,9 @@ export const CreateNewUser = () => {
 		<Card style={{ marginTop: "16px" }}>
 			<Title>Create New User</Title>
 			<form className="" onSubmit={handleSubmit}>
-				<TextInput placeholder="Aqui el nombre" />
-				<TextInput placeholder="Aqui el email" />
-				<TextInput placeholder="Aquie el usuario de github" />
+				<TextInput placeholder="Aqui el nombre" name="name" />
+				<TextInput placeholder="Aqui el email" name="email" />
+				<TextInput placeholder="Aquie el usuario de github" name="github" />
 				<div>
 					<Button type="submit" style={{ marginTop: "16px" }}>
 						Crear Usuario

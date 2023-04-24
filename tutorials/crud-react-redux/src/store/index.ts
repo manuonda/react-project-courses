@@ -13,15 +13,19 @@ const persistanceLocalStorage = (store) => (next) => (action) => {
 };
 
 const syncWithDatabase: Middleware = (store) => (next) => (action) => {
-	console.log({ action, state: store.getState() });
+	// fase 1 : next(action)
+	const { type, payload } = action;
+	console.log({ type, payload });
 	next(action);
+	// fase 2
+	console.log(store.getState());
 };
 
 export const store = configureStore({
 	reducer: {
 		users: userReducer,
 	},
-	middleware: [persistanceLocalStorage],
+	middleware: [persistanceLocalStorage, syncWithDatabase],
 });
 
 export type RootState = ReturnType<typeof store.getState>;
