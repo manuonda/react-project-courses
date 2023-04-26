@@ -1,0 +1,8 @@
+Project that init vainilla javascript
+1 ) Instalar los siguientes plugins :
+   - npm install @vitejs/plugin-react -E
+   - npm install react react-dom -E
+   - npm install standard -E   : linter 
+   
+
+   "eslintConif"
