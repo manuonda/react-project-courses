@@ -1,0 +1,35 @@
+{
+    "hotels": [
+      {
+        "id": 1,
+        "name": "Hotel Ritz",
+        "description": "Hotel de Lujo",
+        "image": "/img/hotel1.jpg"
+      },
+      {
+        "id": 2,
+        "name": "Hotel Elegante",
+        "description": "Una experiencia inolvidable",
+        "image": "/img/hotel2.jpg"
+      },
+      {
+        "id": 3,
+        "name": "Hotel Paradise",
+        "description": "Un oasis de tranquilidad",
+        "image": "/img/hotel3.jpg"
+      },
+      {
+        "id": 4,
+        "name": "Hotel Estrella",
+        "description": "El lugar donde tus sueños se hacen realidad",
+        "image": "/img/hotel4.jpg"
+      },
+      {
+        "id": 5,
+        "name": "Hotel Magnífico",
+        "description": "Elegancia y confort en su máxima expresión",
+        "image": "/img/hotel5.jpg"
+      }
+    ]
+  }
+  
